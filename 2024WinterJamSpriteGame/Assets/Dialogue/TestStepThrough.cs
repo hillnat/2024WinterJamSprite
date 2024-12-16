@@ -1,24 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class TestStepThrough : MonoBehaviour
 {
-    public DialogueManager dialogueManager;
+    public UnityEvent onContinue;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(dialogueManager != null)
-            dialogueManager.ReadNextLine();
+        
     }
 
     void OnContinue(InputValue value)
     {
-        print("Continue");
-        if(dialogueManager != null)
-            dialogueManager.ReadNextLine();
+        if(onContinue != null)
+            onContinue.Invoke();
     }
 }

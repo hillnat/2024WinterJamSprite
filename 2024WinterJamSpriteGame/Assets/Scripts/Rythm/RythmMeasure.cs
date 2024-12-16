@@ -27,15 +27,24 @@ public class RythmMeasure : ScriptableObject
 			noteTimes.Add(new Vector2(begin, end));
 		}
 	}
-	public bool Evaluate(float t) //Returns whether or not a given time has a note playing
+	public EvaluationResults Evaluate(float t) //Returns whether or not a given time has a note playing
 	{
-		for(int i=0; i < noteTimes.Count; i++)
+		EvaluationResults eR = new EvaluationResults();
+
+		eR.isPlaying = false;
+        for (int i=0; i < noteTimes.Count; i++)
 		{
 			if (t >= noteTimes[i].x && t <= noteTimes[i].y)//If time is between the x and y, a note is playing during that time
 			{
-				return true;
+                eR.isPlaying= true;
+				eR.note = noteSet[i];
 			}
 		}
-		return false;
-	}
+		return eR;
+    }
+}
+public struct EvaluationResults // Return type of evlatiion call. Tell us if we clicked while a note is palying, and if so which note
+{
+	public bool isPlaying;
+    public RythmNote note;
 }

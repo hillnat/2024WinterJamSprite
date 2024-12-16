@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    [Header("Settings")]
     public bool shouldReadFirstLine = true;
+    public WaitType waitType = WaitType.Skip;
+
+    [Header("Object References")]
     public TextTyper textTyper;
     public Dialogue[] dialogueTrees = new Dialogue[1];
     /// <summary> For individual textboxes </summary>
@@ -27,6 +31,7 @@ public class DialogueManager : MonoBehaviour
 
         textTyper.dialogue = dialogueTrees[index];
         stepThroughIndex = 0;
+        textTyper.SetupRefs();
         
         if(shouldReadFirstLine) { ReadNextLine(); }
     }
@@ -37,4 +42,17 @@ public class DialogueManager : MonoBehaviour
         textTyper.TypeFromArray(stepThroughIndex);
         stepThroughIndex++;
     }
+
+    public void TryReadNextLine(){
+        if(waitType == WaitType.Wait && textTyper.isTyping) { return; }
+        if(waitType == WaitType.Skip && textTyper.isTyping) { 
+            textTyper.Skip(); 
+            return;
+        }
+        ReadNextLine();
+    }
+}
+
+public enum WaitType{
+    None, Skip, Wait
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingSpeed: 0.05
   punctuationSpeed: 0.2
+  sound: {fileID: 8300000, guid: a3eff802ccdddc64684583a1913e5d11, type: 3}
   text:
   - It's a beautiful day outside.
   - Birds are singing, flowers are blooming.

@@ -8,4 +8,12 @@ public class RythmNote : ScriptableObject
     public float preDelay;
     public float duration;
     public float postDelay;
+
+    public AudioClip audioClip;
+
+    public float volume = 1f;
+    public float pitch = 1f;
+    public float stereoPan = 0f;
+    public float spatialBlend = 0f;
+    public float reverb = 1f;
 }
