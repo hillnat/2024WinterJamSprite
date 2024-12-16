@@ -51,7 +51,7 @@ public class TextTyper : MonoBehaviour
     }
 
     public void TypeFromArray(int index){
-        if(dialogue.text.Length < index + 1){
+        if(dialogue != null && dialogue.text.Length < index + 1){
             return;
         }
         DisplayText(dialogue.text[index]);
