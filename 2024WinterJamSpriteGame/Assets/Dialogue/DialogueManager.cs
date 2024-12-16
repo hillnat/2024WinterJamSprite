@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    public bool shouldReadFirstLine = true;
     public TextTyper textTyper;
     public Dialogue[] dialogueTrees = new Dialogue[1];
     /// <summary> For individual textboxes </summary>
@@ -26,6 +27,8 @@ public class DialogueManager : MonoBehaviour
 
         textTyper.dialogue = dialogueTrees[index];
         stepThroughIndex = 0;
+        
+        if(shouldReadFirstLine) { ReadNextLine(); }
     }
 
     public void ReadNextLine(){
