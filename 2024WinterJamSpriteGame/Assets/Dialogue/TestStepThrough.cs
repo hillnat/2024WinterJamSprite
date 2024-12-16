@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class TestStepThrough : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class TestStepThrough : MonoBehaviour
         Input.GetKeyDown(KeyCode.Space);
     }
 
-    void OnMouseDown()
+    void OnContinue(InputValue value)
     {
         if(dialogueManager != null)
             dialogueManager.ReadNextLine();
