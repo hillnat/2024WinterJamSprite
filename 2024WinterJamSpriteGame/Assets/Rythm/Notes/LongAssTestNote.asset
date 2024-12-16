@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd0d32148740e9f43b0a002e2adf8111, type: 3}
-  m_Name: QuaterNote
+  m_Name: LongAssTestNote
   m_EditorClassIdentifier: 
   preDelay: 0.1
-  duration: 0.15
+  duration: 2
   postDelay: 0.1
   audioClip: {fileID: 8300000, guid: 4ed78c996189f604ba795b9bcc02914f, type: 3}
   volume: 1

@@ -26,12 +26,15 @@ public class InputManager : MonoBehaviour
     {
         Singleton();
     }
-
+    private void LateUpdate()
+    {
+        hit = false;
+    }
     #endregion
     #region Input System Callbacks
-    public void OnHit(InputValue input)
+    public void OnHit()
     {
-        hit = FloatToBool(input.Get<float>());
+        hit = true;
     }
     #endregion
     #region Util

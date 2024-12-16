@@ -9,9 +9,7 @@ public class RythmNote : ScriptableObject
     public float duration;
     public float postDelay;
 
-    public List<AudioClip> audioClips = new List<AudioClip>();
-
-    public AudioClip getRandomClip => audioClips[Random.Range(0, audioClips.Count)];
+    public AudioClip audioClip;
 
     public float volume = 1f;
     public float pitch = 1f;
