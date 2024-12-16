@@ -15,10 +15,15 @@ MonoBehaviour:
   _noteSet:
   - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
   - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
+  - {fileID: 11400000, guid: ff78d6d6038f6904598b6a4d68032c94, type: 2}
+  - {fileID: 11400000, guid: 5f411fcf6f0a4ed459691d6520f4d6e9, type: 2}
+  - {fileID: 11400000, guid: ff78d6d6038f6904598b6a4d68032c94, type: 2}
+  - {fileID: 11400000, guid: 5f411fcf6f0a4ed459691d6520f4d6e9, type: 2}
+  - {fileID: 11400000, guid: ff78d6d6038f6904598b6a4d68032c94, type: 2}
   - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
   - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
   noteTimes:
   - {x: 0.1, y: 0.4}
-  - {x: 0.6, y: 0.9}
-  - {x: 1.1, y: 1.4}
-  - {x: 1.6, y: 1.9}
+  - {x: 0.6, y: 0.90000004}
+  - {x: 1.1, y: 1.4000001}
+  - {x: 1.6000001, y: 1.9000001}

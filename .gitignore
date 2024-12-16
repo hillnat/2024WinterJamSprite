@@ -3,12 +3,12 @@
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
 /2024WinterJamSpriteGame/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+/2024WinterJamSpriteGame/[Tt]emp/
+/2024WinterJamSpriteGame/[Oo]bj/
+/2024WinterJamSpriteGame/[Bb]uild/
+/2024WinterJamSpriteGame/[Bb]uilds/
+/2024WinterJamSpriteGame/[Ll]ogs/
+/2024WinterJamSpriteGame/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
