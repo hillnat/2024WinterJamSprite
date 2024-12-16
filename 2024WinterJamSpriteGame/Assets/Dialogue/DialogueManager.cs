@@ -15,8 +15,14 @@ public class DialogueManager : MonoBehaviour
     }
 
     void LoadDialogueTree(int index){
-        if(textTyper == null) { return; }
-        if(dialogueTrees.Length < index + 1) { return; }
+        if(textTyper == null) {
+            Debug.LogWarning("No Text Typer");
+            return;
+        }
+        if(dialogueTrees.Length < index + 1) {
+            Debug.LogWarning("Not Enough Dialogue Trees");
+            return; 
+        }
 
         textTyper.dialogue = dialogueTrees[index];
         stepThroughIndex = 0;

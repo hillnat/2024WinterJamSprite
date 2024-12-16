@@ -11,21 +11,13 @@ public class TestStepThrough : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        CheckInput();
-    }
-
-    void CheckInput(){ //insertInput
-        Input.GetKeyDown(KeyCode.Space);
+        if(dialogueManager != null)
+            dialogueManager.ReadNextLine();
     }
 
     void OnContinue(InputValue value)
     {
+        print("Continue");
         if(dialogueManager != null)
             dialogueManager.ReadNextLine();
     }
