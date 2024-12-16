@@ -9,6 +9,8 @@ public class TextTyper : MonoBehaviour
     public TextMeshProUGUI textDisplay;
     public Dialogue dialogue;
 
+    [HideInInspector]
+    public bool isTyping;
     private string targetText;
     private int currentCharacterIndex;
     private Coroutine typingCoroutine;
@@ -31,6 +33,7 @@ public class TextTyper : MonoBehaviour
     private IEnumerator TypeText()
     {
         textDisplay.text = ""; // Clear existing text
+        isTyping = true;
 
         while (currentCharacterIndex < targetText.Length)
         {
@@ -41,17 +44,20 @@ public class TextTyper : MonoBehaviour
             }
             yield return new WaitForSeconds(dialogue.typingSpeed);
         }
+        isTyping = false;
     }
 
-    public void Start()
-    {
-        //DisplayText("This is an example sentence displayed over time.");
-
-        TypeFromArray(0);
+    public void Skip(){
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+        }
+        textDisplay.text = targetText;
+        isTyping = false;
     }
 
     public void TypeFromArray(int index){
-        if(dialogue != null && dialogue.text.Length < index + 1){
+        if(dialogue == null || dialogue.text == null || dialogue.text.Length < index + 1){
             return;
         }
         DisplayText(dialogue.text[index]);

@@ -421,7 +421,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8392ddb3659eced42929bf45aa6cc80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueManager: {fileID: 1989612797}
+  onContinue:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1989612797}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: TryReadNextLine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &915745225
 Transform:
   m_ObjectHideFlags: 0
@@ -722,6 +736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textDisplay: {fileID: 1621559370}
   dialogue: {fileID: 0}
+  isTyping: 0
 --- !u!114 &1989612797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,6 +749,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f3d49b5019cef4693ece39824b6de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldReadFirstLine: 1
+  waitType: 1
   textTyper: {fileID: 1989612796}
   dialogueTrees:
   - {fileID: 11400000, guid: 700cc9bb6a868414691f4c5834ed362f, type: 2}
