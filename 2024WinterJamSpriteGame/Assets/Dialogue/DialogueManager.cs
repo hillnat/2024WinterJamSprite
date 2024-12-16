@@ -31,6 +31,7 @@ public class DialogueManager : MonoBehaviour
 
         textTyper.dialogue = dialogueTrees[index];
         stepThroughIndex = 0;
+        textTyper.SetupRefs();
         
         if(shouldReadFirstLine) { ReadNextLine(); }
     }

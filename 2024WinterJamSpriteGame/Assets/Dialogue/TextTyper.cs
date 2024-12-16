@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(AudioSource))]
 public class TextTyper : MonoBehaviour
 {
     [Header("Values & References")]
     public TextMeshProUGUI textDisplay;
     public Dialogue dialogue;
+    public AudioSource audioSource;
 
     [HideInInspector]
     public bool isTyping;
@@ -15,7 +17,15 @@ public class TextTyper : MonoBehaviour
     private int currentCharacterIndex;
     private Coroutine typingCoroutine;
 
-
+    void Awake()
+    {
+        if(audioSource == null){
+            audioSource = GetComponent<AudioSource>();
+        }
+    }
+    public void SetupRefs(){
+        audioSource.clip = dialogue.sound;
+    }
     public void DisplayText(string text)
     {
         // Stop any existing coroutine to prevent overlap
@@ -39,10 +49,18 @@ public class TextTyper : MonoBehaviour
         {
             textDisplay.text += targetText[currentCharacterIndex];
             currentCharacterIndex++;
+            if(dialogue.sound != null){
+                //Play sound, cut previous
+                audioSource.Stop();
+                audioSource.Play();
+            }
             if(isPunctuation(targetText[currentCharacterIndex - 1])){
                 yield return new WaitForSeconds(dialogue.punctuationSpeed);
             }
             yield return new WaitForSeconds(dialogue.typingSpeed);
+        }
+        if(dialogue.sound != null){
+                audioSource.Stop();
         }
         isTyping = false;
     }
