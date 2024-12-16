@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class RythmManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class RythmManager : MonoBehaviour
     }
     public RythmMeasure _currentMeasure;
 
+    public Image hitFeedbackImage;
+    #region Unity Callbacks
     private void Awake()
     {
         toneAudioSource = GetComponent<AudioSource>();
@@ -29,21 +32,35 @@ public class RythmManager : MonoBehaviour
     {
         if (isPlaying)
         {
-            timer += Time.deltaTime;
-            bool isPlayingNote = currentMeasure.Evaluate(timer);
-            SetToneAudioSource(isPlayingNote);
-            if (timer > currentMeasure.measureEndTime) { isPlaying = false; }
+            timer += Time.deltaTime;//Increment timer
+            bool isPlayingNote = currentMeasure.Evaluate(timer);//Evaluate measure
+            SetToneAudioSource(isPlayingNote);//Set audio source on or off
+
+            if (InputManager.instance.hit && isPlayingNote) { StartCoroutine(FlashHitFeedback()); }
+
+            if (timer > currentMeasure.measureEndTime) { isPlaying = false; }//Handle end of timer
         }
     }
+    #endregion
     private void SetToneAudioSource(bool state)
     {
         if (state && !toneAudioSource.isPlaying) { toneAudioSource.Play(); }
         else if(!state && toneAudioSource.isPlaying) { toneAudioSource.Stop(); }
     }
-
+    #region UI Callbacks
     public void UICALLBACK_StartPlaying()
     {
         isPlaying = true;
         timer = 0f;
+    }
+    #endregion
+
+    IEnumerator FlashHitFeedback()
+    {
+        hitFeedbackImage.color = new Vector4(1f, 1f, 1f, 0f);
+        yield return new WaitForSeconds(0.1f);
+        hitFeedbackImage.color = new Vector4(1f, 1f, 1f, 0.5f);
+        yield return new WaitForSeconds(0.1f);
+        hitFeedbackImage.color = new Vector4(1f, 1f, 1f, 0f);
     }
 }
