@@ -75,3 +75,4 @@ crashlytics-build.properties
 ./Library/
 /Temp/
 ./Temp/
+*.log

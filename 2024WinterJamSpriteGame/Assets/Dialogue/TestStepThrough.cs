@@ -19,10 +19,13 @@ public class TestStepThrough : MonoBehaviour
         CheckInput();
     }
 
-    void CheckInput(){
-        if(false){ //insertInput
-            if(dialogueManager != null)
-                dialogueManager.ReadNextLine();
-        }
+    void CheckInput(){ //insertInput
+        Input.GetKeyDown(KeyCode.Space);
+    }
+
+    void OnMouseDown()
+    {
+        if(dialogueManager != null)
+            dialogueManager.ReadNextLine();
     }
 }
