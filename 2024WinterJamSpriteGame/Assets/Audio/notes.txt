@@ -1,0 +1,8 @@
+all audio files in this folder taken from kenney impact sounds, cc0
+https://kenney.nl/assets/impact-sounds
+
+
+quarter note - impactGlass_heavy002
+eighth note - impactMetal_light_000 (volume 0.6, pitch 0.8)
+triplets - impactMetal_heavy_001 (pitch 0.68)
+sixteenth note - impactPlate_medium_000 (volume 0.4)
