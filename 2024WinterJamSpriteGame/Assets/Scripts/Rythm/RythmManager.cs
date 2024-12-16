@@ -33,19 +33,29 @@ public class RythmManager : MonoBehaviour
         if (isPlaying)
         {
             timer += Time.deltaTime;//Increment timer
-            bool isPlayingNote = currentMeasure.Evaluate(timer);//Evaluate measure
-            SetToneAudioSource(isPlayingNote);//Set audio source on or off
+            EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
+            SetToneAudioSource(eR);//Set audio source on or off
 
-            if (InputManager.instance.hit && isPlayingNote) { StartCoroutine(FlashHitFeedback()); }
+            if (InputManager.instance.hit && eR.success) { StartCoroutine(FlashHitFeedback()); }
 
             if (timer > currentMeasure.measureEndTime) { isPlaying = false; }//Handle end of timer
         }
     }
     #endregion
-    private void SetToneAudioSource(bool state)
+    private void SetToneAudioSource(EvaluationResults eR)
     {
-        if (state && !toneAudioSource.isPlaying) { toneAudioSource.Play(); }
-        else if(!state && toneAudioSource.isPlaying) { toneAudioSource.Stop(); }
+        if (eR.success && !toneAudioSource.isPlaying) {
+            toneAudioSource.clip = eR.note.getRandomClip;
+            //Set other audio stuff. Im aware this will get called each frame there is a note playing. However adding the state checks would probably be even less performant.
+            toneAudioSource.volume = eR.note.volume;
+            toneAudioSource.pitch = eR.note.pitch;
+            toneAudioSource.panStereo = eR.note.stereoPan;
+            toneAudioSource.spatialBlend = eR.note.spatialBlend;
+            toneAudioSource.reverbZoneMix = eR.note.reverb;
+            toneAudioSource.Play();
+            
+        }
+        else if(!eR.success && toneAudioSource.isPlaying) { toneAudioSource.Stop(); }
     }
     #region UI Callbacks
     public void UICALLBACK_StartPlaying()
@@ -57,10 +67,10 @@ public class RythmManager : MonoBehaviour
 
     IEnumerator FlashHitFeedback()
     {
-        hitFeedbackImage.color = new Vector4(1f, 1f, 1f, 0f);
+        hitFeedbackImage.color = new Vector4(0f, 1f, 0f, 0f);
         yield return new WaitForSeconds(0.1f);
-        hitFeedbackImage.color = new Vector4(1f, 1f, 1f, 0.5f);
+        hitFeedbackImage.color = new Vector4(0f, 1f, 0f, 0.5f);
         yield return new WaitForSeconds(0.1f);
-        hitFeedbackImage.color = new Vector4(1f, 1f, 1f, 0f);
+        hitFeedbackImage.color = new Vector4(0f, 1f, 0f, 0f);
     }
 }
