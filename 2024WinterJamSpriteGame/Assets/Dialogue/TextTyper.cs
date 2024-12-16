@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PreplanningJam : MonoBehaviour
+public class TextTyper : MonoBehaviour
 {
     [Header("Values & References")]
     public TextMeshProUGUI textDisplay;
-    public float typingSpeed = 0.05f;
-    public float punctuationSpeed = 0.2f;
-    public string[] dialogue = new string[1];
+    public Dialogue dialogue;
 
     private string targetText;
     private int currentCharacterIndex;
@@ -39,9 +37,9 @@ public class PreplanningJam : MonoBehaviour
             textDisplay.text += targetText[currentCharacterIndex];
             currentCharacterIndex++;
             if(isPunctuation(targetText[currentCharacterIndex - 1])){
-                yield return new WaitForSeconds(punctuationSpeed);
+                yield return new WaitForSeconds(dialogue.punctuationSpeed);
             }
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSeconds(dialogue.typingSpeed);
         }
     }
 
@@ -53,10 +51,10 @@ public class PreplanningJam : MonoBehaviour
     }
 
     public void TypeFromArray(int index){
-        if(dialogue.Length < index + 1){
+        if(dialogue.text.Length < index + 1){
             return;
         }
-        DisplayText(dialogue[index]);
+        DisplayText(dialogue.text[index]);
     }
 
     bool isPunctuation(char c){
