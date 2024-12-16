@@ -1,0 +1,45 @@
+{
+    "name": "ActionMap",
+    "maps": [
+        {
+            "name": "UI",
+            "id": "67a40eb2-1d72-4bfb-8dd7-af387b24af5e",
+            "actions": [
+                {
+                    "name": "Continue",
+                    "type": "Button",
+                    "id": "57e06b15-45dc-43d3-830b-1eec2e0f62e1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "55dd7a8c-aa8d-4712-b9bb-a7c8fe2f1f8f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4f0fd28-c376-4dbb-976e-61e7b9d1209f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
