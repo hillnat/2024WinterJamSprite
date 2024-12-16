@@ -46,12 +46,12 @@
             "actions": [
                 {
                     "name": "Hit",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "04677c4d-3dd2-4c0f-ab46-d965cc1b7c1f",
-                    "expectedControlType": "",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

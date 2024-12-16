@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class RythmManager : MonoBehaviour
 {
     public float timer = 0f;
-    public bool isPlaying=false;
+    public float multiplier = 2.66666666667f; //90 bpm = 2.6666
+    //If mult = 1, it is 240 bpm. There are 4 beats per second
+    public bool isRunning=false;
     private AudioSource toneAudioSource;
     public RythmMeasure currentMeasure
     {
@@ -30,22 +32,22 @@ public class RythmManager : MonoBehaviour
     }
     private void Update()
     {
-        if (isPlaying)
+        if (isRunning)
         {
-            timer += Time.deltaTime;//Increment timer
+            timer += Time.deltaTime * multiplier;//Increment timer
             EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
             SetToneAudioSource(eR);//Set audio source on or off
 
-            if (InputManager.instance.hit && eR.success) { StartCoroutine(FlashHitFeedback()); }
+            if (InputManager.instance.hit && eR.isPlaying) { StartCoroutine(FlashHitFeedback()); }
 
-            if (timer > currentMeasure.measureEndTime) { isPlaying = false; }//Handle end of timer
+            if (timer > currentMeasure.measureEndTime) { isRunning = false; Debug.Log($"Ended after {timer} seconds"); }//Handle end of running timer
         }
     }
     #endregion
     private void SetToneAudioSource(EvaluationResults eR)
     {
-        if (eR.success && !toneAudioSource.isPlaying) {
-            toneAudioSource.clip = eR.note.getRandomClip;
+        if (eR.isPlaying && !toneAudioSource.isPlaying) {
+            toneAudioSource.clip = eR.note.audioClip;
             //Set other audio stuff. Im aware this will get called each frame there is a note playing. However adding the state checks would probably be even less performant.
             toneAudioSource.volume = eR.note.volume;
             toneAudioSource.pitch = eR.note.pitch;
@@ -55,12 +57,12 @@ public class RythmManager : MonoBehaviour
             toneAudioSource.Play();
             
         }
-        else if(!eR.success && toneAudioSource.isPlaying) { toneAudioSource.Stop(); }
+        else if(!eR.isPlaying && toneAudioSource.isPlaying) { toneAudioSource.Stop(); }
     }
     #region UI Callbacks
     public void UICALLBACK_StartPlaying()
     {
-        isPlaying = true;
+        isRunning = true;
         timer = 0f;
     }
     #endregion
