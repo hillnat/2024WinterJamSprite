@@ -616,7 +616,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0.4245283, g: 0.22906278, b: 0.18623175, a: 1}
+  m_fontColor: {r: 0.1981132, g: 0.09010995, b: 0.06634924, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -755,7 +755,8 @@ MonoBehaviour:
   waitType: 1
   textTyper: {fileID: 1989612796}
   dialogueTrees:
-  - {fileID: 11400000, guid: 700cc9bb6a868414691f4c5834ed362f, type: 2}
+  - {fileID: 11400000, guid: dd775c5f138243c4d800e884b73207ec, type: 2}
+  - {fileID: 11400000, guid: 79511d23f7a9bc941ba995ebbea32071, type: 2}
 --- !u!82 &1989612798
 AudioSource:
   m_ObjectHideFlags: 0
