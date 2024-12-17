@@ -7,6 +7,13 @@ using UnityEngine.UI;
 
 public class RythmManager : MonoBehaviour
 {
+	public int score
+	{
+		get { return _score; }
+		set { _score = value; UpdateScoreIcons(); }
+	}
+	public int _score=0;
+	public int miniScore=0;
     #region Singleton
     public static RythmManager instance;
     private void Singleton()
@@ -37,6 +44,10 @@ public class RythmManager : MonoBehaviour
 	public TMP_Text noteIconText;
 
 	private RythmNote recentNote;
+
+	public Image tabIcon1;
+	public Image tabIcon2;
+	public Image tabIcon3;
 	#region Unity Callbacks
 	private void Awake()
 	{
@@ -54,14 +65,13 @@ public class RythmManager : MonoBehaviour
 	{
 		if (isPlayingMeasure)
 		{
-
 			timer += Time.deltaTime * multiplier;//Increment timer
 			EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
 
             SetNoteIcons(eR);
             SetToneAudioSource(eR);//Set audio source on or off
 
-            if (timer > currentMeasure.measureEndTime) { timer = 0; isListeningToPlayer = true; isPlayingMeasure = false; noteIconText.text = ""; }//Handle end of running timer. After this elapses, the call part is over and we move onto the response
+            if (timer > currentMeasure.measureEndTime) { timer = 0; isListeningToPlayer = true; isPlayingMeasure = false; noteIconText.text = ""; miniScore = 0; }//Handle end of running timer. After this elapses, the call part is over and we move onto the response
 
         }
         else if (isListeningToPlayer)
@@ -73,8 +83,17 @@ public class RythmManager : MonoBehaviour
             SetToneAudioSource(eR);//Set audio source on or off
 
 
-            if (InputManager.instance.hit && eR.isPlaying) { hitFeedback.Play(); }
-            if (timer > currentMeasure.measureEndTime) { timer = 0; isListeningToPlayer = false; isPlayingMeasure = false; noteIconText.text = ""; }//Handle end of running timer.
+            if (InputManager.instance.hit && eR.isPlaying) {
+				hitFeedback.Play();
+				miniScore++;
+			}
+
+            if (timer > currentMeasure.measureEndTime) {
+				timer = 0;
+				isListeningToPlayer = false;
+				isPlayingMeasure = false;
+				noteIconText.text = "";
+			}//Handle end of running timer.
         }
     }
     #endregion
@@ -107,4 +126,12 @@ public class RythmManager : MonoBehaviour
 		timer = 0f;
 	}
     #endregion
+
+	private void UpdateScoreIcons()
+	{
+		float scoreScaled = score / 5f; //If 15, now we have 3
+        tabIcon1.fillAmount = Mathf.Clamp01(scoreScaled);
+        tabIcon2.fillAmount = Mathf.Clamp01(scoreScaled-1f);
+        tabIcon3.fillAmount = Mathf.Clamp01(scoreScaled-2f);
+    }
 }
