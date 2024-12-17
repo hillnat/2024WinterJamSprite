@@ -10,7 +10,25 @@ public class RythmManager : MonoBehaviour
 	public int score
 	{
 		get { return _score; }
-		set { _score = value; UpdateScoreIcons(); GameManager.tabs = score; }
+		set {
+			_score = value;
+			UpdateScoreIcons();
+			GameManager.tabs = score;
+			switch (score)
+			{
+				case 5:
+					ViewManager.instance.SwitchToDialogue();
+					break;
+                case 10:
+                    ViewManager.instance.SwitchToDialogue();
+                    break;
+                case 15:
+                    ViewManager.instance.SwitchToDialogue();
+                    break;
+				default:
+					break;
+            }
+		}
 	}
 	public int _score=0;
 

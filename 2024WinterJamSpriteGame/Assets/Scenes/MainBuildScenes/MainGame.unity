@@ -501,6 +501,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 540070188810569588, guid: e163debf0ea2fa1459cd63cfa59c9a87, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 540070188810569588, guid: e163debf0ea2fa1459cd63cfa59c9a87, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 540070188810569588, guid: e163debf0ea2fa1459cd63cfa59c9a87, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 540070188810569588, guid: e163debf0ea2fa1459cd63cfa59c9a87, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4328546955933268612, guid: e163debf0ea2fa1459cd63cfa59c9a87, type: 3}
       propertyPath: m_Name
       value: PauseMenuFull
