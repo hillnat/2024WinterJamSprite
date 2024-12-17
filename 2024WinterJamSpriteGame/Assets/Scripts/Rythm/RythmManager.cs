@@ -13,7 +13,13 @@ public class RythmManager : MonoBehaviour
 		set { _score = value; UpdateScoreIcons(); }
 	}
 	public int _score=0;
-	public int miniScore=0;
+
+    public int miniScore
+    {
+        get { return _miniScore; }
+        set { _miniScore = value; UpdateMiniScore(); }
+    }
+    public int _miniScore = 0;
     #region Singleton
     public static RythmManager instance;
     private void Singleton()
@@ -45,9 +51,10 @@ public class RythmManager : MonoBehaviour
 
 	private RythmNote recentNote;
 
-	public Image tabIcon1;
-	public Image tabIcon2;
-	public Image tabIcon3;
+	public Image scoreIcon1;
+	public Image scoreIcon2;
+	public Image scoreIcon3;
+	public Image miniScoreIcon;
 	#region Unity Callbacks
 	private void Awake()
 	{
@@ -58,6 +65,7 @@ public class RythmManager : MonoBehaviour
         if (currentMeasure != null) { currentMeasure.CalibrateMeasure(); }
         noteIconText.text = "";
         score = 0;
+		miniScore = 0;
     }
 	private void Start()
 	{
@@ -67,6 +75,8 @@ public class RythmManager : MonoBehaviour
 	{
 		if (isPlayingMeasure)
 		{
+			if (miniScore != 0) { miniScore = 0; }//Reset score but not every frame because the UI update call is tied into the set call
+
 			timer += Time.deltaTime * multiplier;//Increment timer
 			EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
 
@@ -132,9 +142,14 @@ public class RythmManager : MonoBehaviour
 
 	private void UpdateScoreIcons()
 	{
-		float scoreScaled = score / 5f; //If 15, now we have 3
-        tabIcon1.fillAmount = Mathf.Clamp01(scoreScaled);
-        tabIcon2.fillAmount = Mathf.Clamp01(scoreScaled-1f);
-        tabIcon3.fillAmount = Mathf.Clamp01(scoreScaled-2f);
+		float scoreScaled = score / 5f; //This math works assuming 15 is max score. Fuck shit balls
+        scoreIcon1.fillAmount = Mathf.Clamp01(scoreScaled);
+        scoreIcon2.fillAmount = Mathf.Clamp01(scoreScaled-1f);
+        scoreIcon3.fillAmount = Mathf.Clamp01(scoreScaled-2f);
+    }
+    private void UpdateMiniScore()
+    {
+        float miniScoreScaled = (float)miniScore / (float)currentMeasure.noteSet.Count;
+		miniScoreIcon.fillAmount = miniScoreScaled;
     }
 }
