@@ -10,9 +10,6 @@ public class DialogueManager : MonoBehaviour
     public WaitType waitType = WaitType.Skip;
 
     [Header("Object References")]
-    public Image guyImg;
-    public Sprite spriteA;
-    public Sprite spriteB;
     public TextTyper textTyper;
     public Dialogue[] dialogueTrees = new Dialogue[1];
     /// <summary> For individual textboxes </summary>
@@ -42,13 +39,7 @@ public class DialogueManager : MonoBehaviour
 
     public void ReadNextLine(){
         if(textTyper == null) { return; }
-        //Visual
-        if(stepThroughIndex % 2 == 0) {
-            guyImg.sprite = spriteA;
-        }
-        else {
-            guyImg.sprite = spriteB;
-        }
+
         //Apply text
         textTyper.TypeFromArray(stepThroughIndex);
         stepThroughIndex++;

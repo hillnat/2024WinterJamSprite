@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class TextTyper : MonoBehaviour
@@ -10,6 +11,10 @@ public class TextTyper : MonoBehaviour
     public TextMeshProUGUI textDisplay;
     public Dialogue dialogue;
     public AudioSource audioSource;
+    public Image guyImg;
+    public Sprite spriteA;
+    public Sprite spriteB;
+    int spriteIndex = 0;
 
     [HideInInspector]
     public bool isTyping;
@@ -25,6 +30,7 @@ public class TextTyper : MonoBehaviour
     }
     public void SetupRefs(){
         audioSource.clip = dialogue.sound;
+        spriteIndex = 0;
     }
     public void DisplayText(string text)
     {
@@ -45,6 +51,13 @@ public class TextTyper : MonoBehaviour
         textDisplay.text = ""; // Clear existing text
         isTyping = true;
 
+        if(spriteIndex % 2 == 0) {
+            guyImg.sprite = spriteA;
+        }
+        else {
+            guyImg.sprite = spriteB;
+        }
+
         while (currentCharacterIndex < targetText.Length)
         {
             textDisplay.text += targetText[currentCharacterIndex];
@@ -63,6 +76,7 @@ public class TextTyper : MonoBehaviour
         if(dialogue.sound != null){
                 audioSource.Stop();
         }
+        spriteIndex++;
         isTyping = false;
     }
 
