@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0d32148740e9f43b0a002e2adf8111, type: 3}
   m_Name: TripletNote3
   m_EditorClassIdentifier: 
-  preDelay: 0.033333
+  preDelay: 0
   duration: 0.05
-  postDelay: 0.033333
+  postDelay: 0.07333334
   icon: 54
   audioClip: {fileID: 8300000, guid: a40c2e82f9810f94c994d7621cdd6ccf, type: 3}
   volume: 1

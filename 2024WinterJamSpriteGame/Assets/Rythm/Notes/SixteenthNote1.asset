@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0d32148740e9f43b0a002e2adf8111, type: 3}
   m_Name: SixteenthNote1
   m_EditorClassIdentifier: 
-  preDelay: 0.025
-  duration: 0.0375
-  postDelay: 0.025
+  preDelay: 0
+  duration: 0.01
+  postDelay: 0.0525
   icon: 33
   audioClip: {fileID: 8300000, guid: a40c2e82f9810f94c994d7621cdd6ccf, type: 3}
   volume: 0.4
