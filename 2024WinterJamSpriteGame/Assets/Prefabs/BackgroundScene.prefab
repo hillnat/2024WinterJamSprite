@@ -1002,6 +1002,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -209386830290992700, guid: daf3eb35ad5c1414181c1f284b5b513f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 267b22978c23d6e4a9f68e5e01b47464, type: 2}
     - target: {fileID: 919132149155446097, guid: daf3eb35ad5c1414181c1f284b5b513f, type: 3}
       propertyPath: m_Name
       value: KayakFinal
@@ -1142,6 +1146,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildingFinal
       objectReference: {fileID: 0}
+    - target: {fileID: 6824241290725859361, guid: 3ac07a126539f4443ace6b8fd1f2dac8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 93b51c8065819f3428e3ed2ad388bb09, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1200,6 +1208,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7857253656093945465, guid: 1618f3e3f5c92ae4a8bd10780a31cdb7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dbae5bdadfeeced44af31d122b8266e0, type: 2}
     - target: {fileID: 919132149155446097, guid: 1618f3e3f5c92ae4a8bd10780a31cdb7, type: 3}
       propertyPath: m_Name
       value: HutFinal
