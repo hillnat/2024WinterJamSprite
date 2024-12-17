@@ -153,7 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  isPlaying: 0
+  multiplier: 0.375
+  isRunning: 0
   _currentMeasure: {fileID: 11400000, guid: 3cbf452cf4e83974cb64cb1044fb88e7, type: 2}
   hitFeedbackImage: {fileID: 1305960489}
 --- !u!4 &155405823
