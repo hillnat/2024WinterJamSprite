@@ -51,13 +51,16 @@ public class TextTyper : MonoBehaviour
         textDisplay.text = ""; // Clear existing text
         isTyping = true;
 
+        //Sprite modding
         if(spriteIndex % 2 == 0) {
             guyImg.sprite = spriteA;
         }
         else {
             guyImg.sprite = spriteB;
         }
-
+        Vector3 pos = guyImg.transform.position;
+        Vector3 shift = new Vector3(0,2,0);
+        int goUp = 0;
         while (currentCharacterIndex < targetText.Length)
         {
             textDisplay.text += targetText[currentCharacterIndex];
@@ -67,7 +70,15 @@ public class TextTyper : MonoBehaviour
                 audioSource.Stop();
                 audioSource.Play();
             }
-            //TODO: for polish, make guy move up and down while typing
+            //bouncing
+            if(goUp < 4){
+                guyImg.transform.position += shift;
+                goUp++;
+            }
+            else{
+                guyImg.transform.position -= shift;
+                goUp--;
+            }
             if(isPunctuation(targetText[currentCharacterIndex - 1])){
                 yield return new WaitForSeconds(dialogue.punctuationSpeed);
             }
@@ -76,6 +87,7 @@ public class TextTyper : MonoBehaviour
         if(dialogue.sound != null){
                 audioSource.Stop();
         }
+        guyImg.transform.position = pos;
         spriteIndex++;
         isTyping = false;
     }

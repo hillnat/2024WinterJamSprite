@@ -10,7 +10,25 @@ public class RythmManager : MonoBehaviour
 	public int score
 	{
 		get { return _score; }
-		set { _score = value; UpdateScoreIcons(); }
+		set {
+			_score = value;
+			UpdateScoreIcons();
+			GameManager.tabs = score;
+			switch (score)
+			{
+				case 5:
+					ViewManager.instance.SwitchToDialogue();
+					break;
+                case 10:
+                    ViewManager.instance.SwitchToDialogue();
+                    break;
+                case 15:
+                    ViewManager.instance.SwitchToDialogue();
+                    break;
+				default:
+					break;
+            }
+		}
 	}
 	public int _score=0;
 
@@ -38,7 +56,6 @@ public class RythmManager : MonoBehaviour
 	//If mult = 1, it is 240 bpm. There are 4 beats per second
 	public bool isPlayingMeasure = false;
 	public bool isListeningToPlayer = false;
-	private AudioSource toneAudioSource;
 	public RythmMeasure currentMeasure
 	{
 		get { return _currentMeasure; }
@@ -59,9 +76,6 @@ public class RythmManager : MonoBehaviour
 	private void Awake()
 	{
 		Singleton();
-		toneAudioSource = GetComponent<AudioSource>();
-		toneAudioSource.loop = true;
-		toneAudioSource.Stop();
         if (currentMeasure != null) { currentMeasure.CalibrateMeasure(); }
         noteIconText.text = "";
         score = 0;
@@ -80,8 +94,15 @@ public class RythmManager : MonoBehaviour
 			timer += Time.deltaTime * multiplier;//Increment timer
 			EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
 
-            SetNoteIcons(eR);
-            SetToneAudioSource(eR);//Set audio source on or off
+            if (eR.note != null && recentNote != eR.note)
+            {
+				Debug.Log("Note has changed");
+                recentNote = eR.note;
+                noteIconText.text += recentNote.icon;
+
+                AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
+            }
+            //SetToneAudioSource(eR);//Set audio source on or off
 
             if (timer > currentMeasure.measureEndTime) { timer = 0; isListeningToPlayer = true; isPlayingMeasure = false; noteIconText.text = ""; miniScore = 0; }//Handle end of running timer. After this elapses, the call part is over and we move onto the response
 
@@ -91,8 +112,16 @@ public class RythmManager : MonoBehaviour
             timer += Time.deltaTime * multiplier;//Increment timer
             EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
 
-			SetNoteIcons(eR);
-            SetToneAudioSource(eR);//Set audio source on or off
+
+            if (eR.note != null && recentNote != eR.note)
+            {
+                Debug.Log("Note has changed");
+                recentNote = eR.note;
+                noteIconText.text += recentNote.icon;
+
+                AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
+            }
+            //SetToneAudioSource(eR);//Set audio source on or off
 
 
             if (InputManager.instance.hit && eR.isPlaying) {
@@ -110,29 +139,8 @@ public class RythmManager : MonoBehaviour
         }
     }
     #endregion
-    private void SetToneAudioSource(EvaluationResults eR)
-	{
-		if (eR.isPlaying && !toneAudioSource.isPlaying) {
-			//Set other audio stuff. Im aware this will get called each frame there is a note playing. However adding the state checks would probably be even less performant.
-			toneAudioSource.volume = eR.note.volume;
-			toneAudioSource.pitch = eR.note.pitch;
-			toneAudioSource.panStereo = eR.note.stereoPan;
-			toneAudioSource.spatialBlend = eR.note.spatialBlend;
-			toneAudioSource.reverbZoneMix = eR.note.reverb;
-			if (eR.note.audioClip != null) { toneAudioSource.clip = eR.note.audioClip; toneAudioSource.Play(); }
-		}
-		else if(!eR.isPlaying && toneAudioSource.isPlaying) { toneAudioSource.Stop(); }
-	}
-	public void SetNoteIcons(EvaluationResults eR)
-	{
-        if (eR.note != null && recentNote != eR.note)
-        {
-            recentNote = eR.note;
-            noteIconText.text += recentNote.icon;
-        }
-    }
-	#region UI Callbacks
-	public void UICALLBACK_StartPlayingMeasure()
+    #region UI Callbacks
+    public void UICALLBACK_StartPlayingMeasure()
 	{
 		if (isListeningToPlayer) { Debug.Log("Tried to start palying the measure while listening to the users input"); return; }
 		isPlayingMeasure = true;

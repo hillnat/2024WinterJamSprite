@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cb6a7018689490498fe7ac2f78141db, type: 3}
-  m_Name: RythmMeasureFirstTry
+  m_Name: RythmMeasureEasy 4
   m_EditorClassIdentifier: 
   _noteSet:
   - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
-  - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
-  - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
+  - {fileID: 11400000, guid: 3bc5a42f37688c34e878b637d2facff1, type: 2}
+  - {fileID: 11400000, guid: 8d8d7baae4b48c748b0b46c9b35de35a, type: 2}
+  - {fileID: 11400000, guid: 71f5f3f9a170ed64b8142510339b6897, type: 2}
+  - {fileID: 11400000, guid: d2292e486c2ab964cb55ea46f3852405, type: 2}
   - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
   noteTimes: []
