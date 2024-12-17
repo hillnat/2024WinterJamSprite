@@ -22,6 +22,7 @@ public class ViewManager : MonoBehaviour
     private void Awake()
     {
         Singleton();
+        SwitchToMainGame();
     }
     public void SwitchToDialogue()
     {

@@ -55,11 +55,13 @@ public class RythmManager : MonoBehaviour
 		toneAudioSource = GetComponent<AudioSource>();
 		toneAudioSource.loop = true;
 		toneAudioSource.Stop();
-	}
+        if (currentMeasure != null) { currentMeasure.CalibrateMeasure(); }
+        noteIconText.text = "";
+        score = 0;
+    }
 	private void Start()
 	{
-		if (currentMeasure != null) { currentMeasure.CalibrateMeasure(); }
-		noteIconText.text = "";
+		
 	}
 	private void Update()
 	{
@@ -93,6 +95,7 @@ public class RythmManager : MonoBehaviour
 				isListeningToPlayer = false;
 				isPlayingMeasure = false;
 				noteIconText.text = "";
+				if (miniScore >= currentMeasure.noteSet.Count) { score++; }
 			}//Handle end of running timer.
         }
     }
