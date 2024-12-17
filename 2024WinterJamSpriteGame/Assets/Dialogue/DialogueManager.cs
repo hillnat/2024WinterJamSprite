@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     public Dialogue[] dialogueTrees = new Dialogue[1];
     /// <summary> For individual textboxes </summary>
     int stepThroughIndex = 0;
-    //public UnityEvent OnExitDialogue;
+    public UnityEvent OnEndGame;
 
     void OnEnable()
     {
@@ -32,6 +32,10 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Not Enough Dialogue Trees");
             return; 
         }
+        if(index == 5){
+            OnEndGame.Invoke();
+            return;
+        }
 
         textTyper.dialogue = dialogueTrees[index];
         stepThroughIndex = 0;
@@ -40,12 +44,19 @@ public class DialogueManager : MonoBehaviour
         if(shouldReadFirstLine) { ReadNextLine(); }
     }
 
+    //Messy solution
+    bool readExtraLine = false;
+
     public void ReadNextLine(){
         if(textTyper == null || textTyper.dialogue == null) { return; }
         if(stepThroughIndex > textTyper.dialogue.text.Length){
             //Tell game manager to load next dialogue tree
             GameManager.IncrementDialogueTreeIndex();
-            LoadDialogueTree(GameManager.dialogueTreeIndex);
+            if(GameManager.dialogueTreeIndex == 1 && !readExtraLine){
+                readExtraLine = true;
+                LoadDialogueTree(GameManager.dialogueTreeIndex);
+            }
+            else{ ViewManager.instance.SwitchToMainGame(); }
             return;
         }
 

@@ -20,7 +20,26 @@ public static class GameManager
             //check for tabs
             if(tabs >= 5){
                 //Go to next dialogue
+                dialogueTreeIndex = 2;
             }
+        }
+        if(dialogueTreeIndex == 2){
+            //check for tabs
+            if(tabs >= 10){
+                //Go to next dialogue
+                dialogueTreeIndex = 3;
+            }
+        }
+        if(dialogueTreeIndex == 3){
+            //check for tabs
+            if(tabs >= 15){
+                //Go to next dialogue
+                dialogueTreeIndex = 4;
+            }
+        }
+        if(dialogueTreeIndex == 4){
+            dialogueTreeIndex = 5;
+            //Initiate escape or something
         }
     }
 }
