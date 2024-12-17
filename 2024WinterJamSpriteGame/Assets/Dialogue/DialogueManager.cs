@@ -44,12 +44,16 @@ public class DialogueManager : MonoBehaviour
         if(shouldReadFirstLine) { ReadNextLine(); }
     }
 
+    //Messy solution
+    bool readExtraLine = false;
+
     public void ReadNextLine(){
         if(textTyper == null || textTyper.dialogue == null) { return; }
         if(stepThroughIndex > textTyper.dialogue.text.Length){
             //Tell game manager to load next dialogue tree
             GameManager.IncrementDialogueTreeIndex();
-            if(GameManager.dialogueTreeIndex == 1){
+            if(GameManager.dialogueTreeIndex == 1 && !readExtraLine){
+                readExtraLine = true;
                 LoadDialogueTree(GameManager.dialogueTreeIndex);
             }
             else{ ViewManager.instance.SwitchToMainGame(); }
