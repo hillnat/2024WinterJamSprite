@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -14,10 +15,12 @@ public class DialogueManager : MonoBehaviour
     public Dialogue[] dialogueTrees = new Dialogue[1];
     /// <summary> For individual textboxes </summary>
     int stepThroughIndex = 0;
+    //public UnityEvent OnExitDialogue;
 
-    void Start()
+    void OnEnable()
     {
-        if(dialogueTrees != null && dialogueTrees.Length > 0) { LoadDialogueTree(0); }
+        int ind = GameManager.dialogueTreeIndex;
+        if(dialogueTrees != null && dialogueTrees.Length > ind) { LoadDialogueTree(ind); }
     }
 
     void LoadDialogueTree(int index){
