@@ -4,19 +4,23 @@ using UnityEngine;
 
 public static class GameManager
 {
-    /*
-    private static GameManager instance;
-    public static GameManager GetInstance(){
-        if (instance == null)
-            {
-                instance = new GameManager();
-            }
-            return instance;
-    }
-    */
-
     //Global variables
     public static float masterVolume = 1.0f;
     public static float musicVolume = 0.33f;
     public static float sfxVolume = 0.5f;
+
+    public static int dialogueTreeIndex = 0;
+    public static int tabs = 0;
+
+    public static void IncrementDialogueTreeIndex(){
+        if(dialogueTreeIndex == 0){
+            dialogueTreeIndex = 1;
+        }
+        if(dialogueTreeIndex == 1){
+            //check for tabs
+            if(tabs >= 5){
+                //Go to next dialogue
+            }
+        }
+    }
 }
