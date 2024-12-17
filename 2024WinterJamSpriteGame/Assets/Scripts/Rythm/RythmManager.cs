@@ -56,12 +56,14 @@ public class RythmManager : MonoBehaviour
 	//If mult = 1, it is 240 bpm. There are 4 beats per second
 	public bool isPlayingMeasure = false;
 	public bool isListeningToPlayer = false;
-	public RythmMeasure currentMeasure
+
+	public List<RythmMeasure> allMeasures;
+	public int currentMeasure
 	{
 		get { return _currentMeasure; }
-		set { _currentMeasure = value; _currentMeasure.CalibrateMeasure();}
+		set { _currentMeasure = value; allMeasures[_currentMeasure].CalibrateMeasure();}
 	}
-	public RythmMeasure _currentMeasure;
+	public int _currentMeasure;
 
 	public ParticleSystem hitFeedback;
 	public TMP_Text noteIconText;
@@ -76,7 +78,7 @@ public class RythmManager : MonoBehaviour
 	private void Awake()
 	{
 		Singleton();
-        if (currentMeasure != null) { currentMeasure.CalibrateMeasure(); }
+        if (currentMeasure < allMeasures.Count) { allMeasures[_currentMeasure].CalibrateMeasure(); }
         noteIconText.text = "";
         score = 0;
 		miniScore = 0;
@@ -92,7 +94,7 @@ public class RythmManager : MonoBehaviour
 			if (miniScore != 0) { miniScore = 0; }//Reset score but not every frame because the UI update call is tied into the set call
 
 			timer += Time.deltaTime * multiplier;//Increment timer
-			EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
+			EvaluationResults eR = allMeasures[currentMeasure].Evaluate(timer);//Evaluate measure
 
             if (eR.note != null && recentNote != eR.note)
             {
@@ -104,13 +106,13 @@ public class RythmManager : MonoBehaviour
             }
             //SetToneAudioSource(eR);//Set audio source on or off
 
-            if (timer > currentMeasure.measureEndTime) { timer = 0; isListeningToPlayer = true; isPlayingMeasure = false; noteIconText.text = ""; miniScore = 0; }//Handle end of running timer. After this elapses, the call part is over and we move onto the response
+            if (timer > allMeasures[currentMeasure].measureEndTime) { timer = 0; isListeningToPlayer = true; isPlayingMeasure = false; noteIconText.text = ""; miniScore = 0; }//Handle end of running timer. After this elapses, the call part is over and we move onto the response
 
         }
         else if (isListeningToPlayer)
 		{
             timer += Time.deltaTime * multiplier;//Increment timer
-            EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
+            EvaluationResults eR = allMeasures[currentMeasure].Evaluate(timer);//Evaluate measure
 
 
             if (eR.note != null && recentNote != eR.note)
@@ -129,12 +131,12 @@ public class RythmManager : MonoBehaviour
 				miniScore++;
 			}
 
-            if (timer > currentMeasure.measureEndTime) {
+            if (timer > allMeasures[currentMeasure].measureEndTime) {
 				timer = 0;
 				isListeningToPlayer = false;
 				isPlayingMeasure = false;
 				noteIconText.text = "";
-				if (miniScore >= currentMeasure.noteSet.Count) { score++; }
+				if (miniScore >= allMeasures[currentMeasure].noteSet.Count) { score++; }
 			}//Handle end of running timer.
         }
     }
@@ -157,7 +159,7 @@ public class RythmManager : MonoBehaviour
     }
     private void UpdateMiniScore()
     {
-        float miniScoreScaled = (float)miniScore / (float)currentMeasure.noteSet.Count;
+        float miniScoreScaled = (float)miniScore / (float)allMeasures[currentMeasure].noteSet.Count;
 		miniScoreIcon.fillAmount = miniScoreScaled;
     }
 }
