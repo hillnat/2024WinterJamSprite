@@ -16,7 +16,7 @@ MonoBehaviour:
   punctuationSpeed: 0.2
   sound: {fileID: 8300000, guid: a3eff802ccdddc64684583a1913e5d11, type: 3}
   text:
-  - Who're you s'possed to be?
+  - Who're you supossed to be?
   - This boat?
   - Sorry, pal. I think I'll be keeping it.
   - I've taken quite a liking to it.
