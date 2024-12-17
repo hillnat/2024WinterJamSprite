@@ -49,7 +49,10 @@ public class DialogueManager : MonoBehaviour
         if(stepThroughIndex > textTyper.dialogue.text.Length){
             //Tell game manager to load next dialogue tree
             GameManager.IncrementDialogueTreeIndex();
-            LoadDialogueTree(GameManager.dialogueTreeIndex);
+            if(GameManager.dialogueTreeIndex == 1){
+                LoadDialogueTree(GameManager.dialogueTreeIndex);
+            }
+            else{ ViewManager.instance.SwitchToMainGame(); }
             return;
         }
 
