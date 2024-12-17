@@ -39,6 +39,10 @@ public class DialogueManager : MonoBehaviour
 
     public void ReadNextLine(){
         if(textTyper == null) { return; }
+        if(stepThroughIndex > textTyper.dialogue.text.Length){
+            //Tell game manager to load next dialogue tree
+            return;
+        }
 
         //Apply text
         textTyper.TypeFromArray(stepThroughIndex);
