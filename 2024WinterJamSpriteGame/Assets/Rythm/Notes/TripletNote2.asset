@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd0d32148740e9f43b0a002e2adf8111, type: 3}
-  m_Name: QuarterRest
+  m_Name: TripletNote2
   m_EditorClassIdentifier: 
-  preDelay: 0.1
-  duration: 0.15
-  postDelay: 0.1
-  icon: 35
-  audioClip: {fileID: 0}
+  preDelay: 0.033333
+  duration: 0.05
+  postDelay: 0.033333
+  icon: 53
+  audioClip: {fileID: 8300000, guid: a40c2e82f9810f94c994d7621cdd6ccf, type: 3}
   volume: 1
-  pitch: 1
+  pitch: 0.68
   stereoPan: 0
   spatialBlend: 0
   reverb: 1
