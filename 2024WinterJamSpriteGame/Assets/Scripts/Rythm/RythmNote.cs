@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class RythmNote : ScriptableObject
 {
+    [Header("Note Sound")]
     public float preDelay;
     public float duration;
     public float postDelay;
-
-    public AudioClip audioClip;
+    [Header("Note Char")]
     public char icon;
-
+    [Header("Audio Emitter Settings")]
+    public AudioClip audioClip;
     public float volume = 1f;
     public float pitch = 1f;
     public float stereoPan = 0f;
