@@ -27,15 +27,18 @@ public class AudioManager : MonoBehaviour
 	public void PlaySound(AudioClip clip, float volume, float pitch, float stereoPan, float spatialBlend, float reverb)
 	{
 		int emitterIndex = GetFreeEmitter();
-		if (emitterIndex != -1) {return;}
+		if (emitterIndex == -1) { return;}
 		AudioSource target = emitters[emitterIndex];
-		target.volume = volume;
+        if (target.isPlaying) { target.Stop(); }
+
+        target.volume = volume;
 		target.pitch = pitch;
 		target.panStereo = stereoPan;
 		target.spatialBlend = spatialBlend;
 		target.reverbZoneMix = reverb;
 		target.clip = clip;
-		target.PlayOneShot(clip);
+		Debug.Log($"Playing sound {clip.name}");
+		target.Play();
 	}
 	private void InitPool()
 	{
@@ -55,7 +58,7 @@ public class AudioManager : MonoBehaviour
 	{
 		for(int i=0; i<emitters.Count; i++)
 		{
-			if (!emitters[i].isPlaying) { return i; }
+			if (!emitters[i].isPlaying) { Debug.Log($"Found Audio Emitter at index {i}"); return i; }
 		}
 		Debug.Log("Faield to find emitter");
 		return -1;//Failed
