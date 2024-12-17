@@ -54,6 +54,7 @@ public class TextTyper : MonoBehaviour
                 audioSource.Stop();
                 audioSource.Play();
             }
+            //TODO: for polish, make guy move up and down while typing
             if(isPunctuation(targetText[currentCharacterIndex - 1])){
                 yield return new WaitForSeconds(dialogue.punctuationSpeed);
             }
