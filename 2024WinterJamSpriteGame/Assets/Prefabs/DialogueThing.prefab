@@ -333,6 +333,37 @@ MonoBehaviour:
   dialogueTrees:
   - {fileID: 11400000, guid: dd775c5f138243c4d800e884b73207ec, type: 2}
   - {fileID: 11400000, guid: 79511d23f7a9bc941ba995ebbea32071, type: 2}
+  - {fileID: 11400000, guid: ddbf14b07b9a90a4d80730b567beaff5, type: 2}
+  - {fileID: 11400000, guid: a7e57a1cf297d1f4b823be2ba189a49e, type: 2}
+  - {fileID: 11400000, guid: 2ae8e1033252fd741b4dc1eca0a39c67, type: 2}
+  - {fileID: 11400000, guid: 7f33f3d2450b9674aaf5ba01141c5307, type: 2}
+  OnEndGame:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: 
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4580780718232963272}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &8637023460523826872
 AudioSource:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     public Dialogue[] dialogueTrees = new Dialogue[1];
     /// <summary> For individual textboxes </summary>
     int stepThroughIndex = 0;
-    //public UnityEvent OnExitDialogue;
+    public UnityEvent OnEndGame;
 
     void OnEnable()
     {
@@ -31,6 +31,10 @@ public class DialogueManager : MonoBehaviour
         if(dialogueTrees.Length < index + 1) {
             Debug.LogWarning("Not Enough Dialogue Trees");
             return; 
+        }
+        if(index == 5){
+            OnEndGame.Invoke();
+            return;
         }
 
         textTyper.dialogue = dialogueTrees[index];
