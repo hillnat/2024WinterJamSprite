@@ -108,7 +108,7 @@ Material:
     - _LightFoamColor: {r: 0.76179886, g: 0.8490566, b: 0.6127626, a: 0.8784314}
     - _WaterColor: {r: 0.21800464, g: 0.6509434, b: 0.5787869, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &4866089668926935729
+--- !u!114 &2772152387007930019
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
