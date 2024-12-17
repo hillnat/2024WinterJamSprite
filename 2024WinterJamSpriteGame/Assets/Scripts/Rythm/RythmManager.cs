@@ -29,38 +29,53 @@ public class RythmManager : MonoBehaviour
 	public RythmMeasure currentMeasure
 	{
 		get { return _currentMeasure; }
-		set { _currentMeasure = value; _currentMeasure.CalibrateMeasure(); SetNoteIcons(); }
+		set { _currentMeasure = value; _currentMeasure.CalibrateMeasure();}
 	}
 	public RythmMeasure _currentMeasure;
 
 	public ParticleSystem hitFeedback;
 	public TMP_Text noteIconText;
+
+	private RythmNote recentNote;
 	#region Unity Callbacks
 	private void Awake()
 	{
+		Singleton();
 		toneAudioSource = GetComponent<AudioSource>();
 		toneAudioSource.loop = true;
 		toneAudioSource.Stop();
 	}
 	private void Start()
 	{
-		if (currentMeasure != null) { currentMeasure.CalibrateMeasure(); SetNoteIcons(); }
+		if (currentMeasure != null) { currentMeasure.CalibrateMeasure(); }
+		noteIconText.text = "";
 	}
 	private void Update()
 	{
 		if (isPlayingMeasure)
 		{
+
 			timer += Time.deltaTime * multiplier;//Increment timer
 			EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
-			SetToneAudioSource(eR);//Set audio source on or off
-		}
-		else if (isListeningToPlayer)
+
+            SetNoteIcons(eR);
+            SetToneAudioSource(eR);//Set audio source on or off
+
+            if (timer > currentMeasure.measureEndTime) { timer = 0; isListeningToPlayer = true; isPlayingMeasure = false; noteIconText.text = ""; }//Handle end of running timer. After this elapses, the call part is over and we move onto the response
+
+        }
+        else if (isListeningToPlayer)
 		{
             timer += Time.deltaTime * multiplier;//Increment timer
             EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
+
+			SetNoteIcons(eR);
+            SetToneAudioSource(eR);//Set audio source on or off
+
+
             if (InputManager.instance.hit && eR.isPlaying) { hitFeedback.Play(); }
+            if (timer > currentMeasure.measureEndTime) { timer = 0; isListeningToPlayer = false; isPlayingMeasure = false; noteIconText.text = ""; }//Handle end of running timer.
         }
-        if (timer > currentMeasure.measureEndTime) { timer = 0; isListeningToPlayer = false; isPlayingMeasure = false; }//Handle end of running timer
     }
     #endregion
     private void SetToneAudioSource(EvaluationResults eR)
@@ -76,14 +91,14 @@ public class RythmManager : MonoBehaviour
 		}
 		else if(!eR.isPlaying && toneAudioSource.isPlaying) { toneAudioSource.Stop(); }
 	}
-	public void SetNoteIcons()
+	public void SetNoteIcons(EvaluationResults eR)
 	{
-		noteIconText.text = "";
-        for (int i=0; i<currentMeasure.noteSet.Count; i++)
-		{
-			noteIconText.text += currentMeasure.noteSet[i].icon;
+        if (eR.note != null && recentNote != eR.note)
+        {
+            recentNote = eR.note;
+            noteIconText.text += recentNote.icon;
         }
-	}
+    }
 	#region UI Callbacks
 	public void UICALLBACK_StartPlayingMeasure()
 	{
@@ -91,11 +106,5 @@ public class RythmManager : MonoBehaviour
 		isPlayingMeasure = true;
 		timer = 0f;
 	}
-    public void UICALLBACK_StartListeningToPlayer()
-    {
-        if (isPlayingMeasure) { Debug.Log("Tried to start listening to the palyer while the measure was playing"); return; }
-        isListeningToPlayer = true;
-        timer = 0f;
-    }
     #endregion
 }
