@@ -304,7 +304,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1019828131727463984, guid: 20943739555e93f4585b34a60e89389a, type: 3}
       propertyPath: m_Name
-      value: DialogueMan
+      value: DialogueManager
       objectReference: {fileID: 0}
     - target: {fileID: 6957305175922473195, guid: 20943739555e93f4585b34a60e89389a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -345,6 +345,10 @@ PrefabInstance:
     - target: {fileID: 6957305175922473195, guid: 20943739555e93f4585b34a60e89389a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8921790219555602286, guid: 20943739555e93f4585b34a60e89389a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
