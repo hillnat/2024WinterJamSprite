@@ -38,9 +38,11 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void ReadNextLine(){
-        if(textTyper == null) { return; }
+        if(textTyper == null || textTyper.dialogue == null) { return; }
         if(stepThroughIndex > textTyper.dialogue.text.Length){
             //Tell game manager to load next dialogue tree
+            GameManager.IncrementDialogueTreeIndex();
+            LoadDialogueTree(GameManager.dialogueTreeIndex);
             return;
         }
 
