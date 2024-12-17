@@ -10,6 +10,7 @@ public class RythmNote : ScriptableObject
     public float postDelay;
 
     public AudioClip audioClip;
+    public char icon;
 
     public float volume = 1f;
     public float pitch = 1f;

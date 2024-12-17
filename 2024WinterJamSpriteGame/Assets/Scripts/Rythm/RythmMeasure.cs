@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RythmMeasure", menuName = "Rythm Measure", order = 100)]
-
+// A MEASURE IN THIS CONTEXT IS A LIST OF NOTES WITH UNSPECIFIED LENGTH. THANKS
 public class RythmMeasure : ScriptableObject
 {
 	public List<RythmNote> noteSet
 	{
 		get { return _noteSet; }
-		set { _noteSet = value; CalibrateNoteTimes(); }
+		set { _noteSet = value; CalibrateMeasure(); }
 	}
 	public List<RythmNote> _noteSet = new List<RythmNote>();
-	public List<Vector2> noteTimes = new List<Vector2>(); // Represents the time where a note is playing. Each vector2 represents the start and end of a note
+	[HideInInspector]public List<Vector2> noteTimes = new List<Vector2>(); // Represents the time where a note is playing. Each vector2 represents the start and end of a note
 	public float measureEndTime => noteTimes[noteTimes.Count - 1].y;//Return the end of the last note
-	public void CalibrateNoteTimes()//Create list of times where notes are playing
+	public void CalibrateMeasure()//Create list of times where notes are playing
 	{
+		//Build note times list for evaluating in the future
 		noteTimes = new List<Vector2>();
 		float timeOffset = 0f;
 		for(int i=0; i<noteSet.Count; i++)

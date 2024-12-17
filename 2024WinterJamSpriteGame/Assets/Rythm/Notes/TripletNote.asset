@@ -15,7 +15,8 @@ MonoBehaviour:
   preDelay: 0.033333
   duration: 0.05
   postDelay: 0.033333
-  audioClip: {fileID: 8300000, guid: 382c8e8f010759a4b9c52582aa6175be, type: 3}
+  audioClip: {fileID: 8300000, guid: a40c2e82f9810f94c994d7621cdd6ccf, type: 3}
+  icon: 54
   volume: 1
   pitch: 0.68
   stereoPan: 0

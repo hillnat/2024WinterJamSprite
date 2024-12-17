@@ -16,6 +16,7 @@ MonoBehaviour:
   duration: 0.075
   postDelay: 0.05
   audioClip: {fileID: 8300000, guid: a40c2e82f9810f94c994d7621cdd6ccf, type: 3}
+  icon: 49
   volume: 0.6
   pitch: 0.8
   stereoPan: 0

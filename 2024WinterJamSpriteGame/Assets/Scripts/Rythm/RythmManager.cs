@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,16 +23,18 @@ public class RythmManager : MonoBehaviour
     public float timer = 0f;
 	public float multiplier = 2.66666666667f; //90 bpm = 2.6666
 	//If mult = 1, it is 240 bpm. There are 4 beats per second
-	public bool isRunning=false;
+	public bool isPlayingMeasure = false;
+	public bool isListeningToPlayer = false;
 	private AudioSource toneAudioSource;
 	public RythmMeasure currentMeasure
 	{
 		get { return _currentMeasure; }
-		set { _currentMeasure = value; _currentMeasure.CalibrateNoteTimes(); }
+		set { _currentMeasure = value; _currentMeasure.CalibrateMeasure(); SetNoteIcons(); }
 	}
 	public RythmMeasure _currentMeasure;
 
 	public ParticleSystem hitFeedback;
+	public TMP_Text noteIconText;
 	#region Unity Callbacks
 	private void Awake()
 	{
@@ -41,23 +44,26 @@ public class RythmManager : MonoBehaviour
 	}
 	private void Start()
 	{
-		if (currentMeasure != null) { currentMeasure.CalibrateNoteTimes(); }
+		if (currentMeasure != null) { currentMeasure.CalibrateMeasure(); SetNoteIcons(); }
 	}
 	private void Update()
 	{
-		if (isRunning)
+		if (isPlayingMeasure)
 		{
 			timer += Time.deltaTime * multiplier;//Increment timer
 			EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
 			SetToneAudioSource(eR);//Set audio source on or off
-
-			if (InputManager.instance.hit && eR.isPlaying) { hitFeedback.Play(); }
-
-			if (timer > currentMeasure.measureEndTime) { isRunning = false; Debug.Log($"Ended after {timer} seconds"); }//Handle end of running timer
 		}
-	}
-	#endregion
-	private void SetToneAudioSource(EvaluationResults eR)
+		else if (isListeningToPlayer)
+		{
+            timer += Time.deltaTime * multiplier;//Increment timer
+            EvaluationResults eR = currentMeasure.Evaluate(timer);//Evaluate measure
+            if (InputManager.instance.hit && eR.isPlaying) { hitFeedback.Play(); }
+        }
+        if (timer > currentMeasure.measureEndTime) { timer = 0; isListeningToPlayer = false; isPlayingMeasure = false; }//Handle end of running timer
+    }
+    #endregion
+    private void SetToneAudioSource(EvaluationResults eR)
 	{
 		if (eR.isPlaying && !toneAudioSource.isPlaying) {
 			//Set other audio stuff. Im aware this will get called each frame there is a note playing. However adding the state checks would probably be even less performant.
@@ -70,11 +76,26 @@ public class RythmManager : MonoBehaviour
 		}
 		else if(!eR.isPlaying && toneAudioSource.isPlaying) { toneAudioSource.Stop(); }
 	}
-	#region UI Callbacks
-	public void UICALLBACK_StartPlaying()
+	public void SetNoteIcons()
 	{
-		isRunning = true;
+		noteIconText.text = "";
+        for (int i=0; i<currentMeasure.noteSet.Count; i++)
+		{
+			noteIconText.text += currentMeasure.noteSet[i].icon;
+        }
+	}
+	#region UI Callbacks
+	public void UICALLBACK_StartPlayingMeasure()
+	{
+		if (isListeningToPlayer) { Debug.Log("Tried to start palying the measure while listening to the users input"); return; }
+		isPlayingMeasure = true;
 		timer = 0f;
 	}
-	#endregion
+    public void UICALLBACK_StartListeningToPlayer()
+    {
+        if (isPlayingMeasure) { Debug.Log("Tried to start listening to the palyer while the measure was playing"); return; }
+        isListeningToPlayer = true;
+        timer = 0f;
+    }
+    #endregion
 }

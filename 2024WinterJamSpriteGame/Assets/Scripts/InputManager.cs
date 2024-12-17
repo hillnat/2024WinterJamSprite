@@ -9,7 +9,6 @@ public class InputManager : MonoBehaviour
     public static InputManager instance;
     private void Singleton()
     {
-
         if (instance != null)
         {
             Destroy(instance);
@@ -28,7 +27,7 @@ public class InputManager : MonoBehaviour
     }
     private void LateUpdate()
     {
-        hit = false;
+        if (hit) { hit = false; }
     }
     #endregion
     #region Input System Callbacks
@@ -36,8 +35,5 @@ public class InputManager : MonoBehaviour
     {
         hit = true;
     }
-    #endregion
-    #region Util
-    public bool FloatToBool(float f) { if (f == 0f) { return false; } else { return true; } }
     #endregion
 }
