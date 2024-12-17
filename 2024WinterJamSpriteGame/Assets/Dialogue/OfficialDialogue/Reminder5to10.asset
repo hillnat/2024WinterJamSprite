@@ -16,5 +16,6 @@ MonoBehaviour:
   punctuationSpeed: 0.2
   sound: {fileID: 8300000, guid: a3eff802ccdddc64684583a1913e5d11, type: 3}
   text:
-  - insert dialogue
-  - taunt
+  - 5 tabs?
+  - That's as many as a banjo.
+  - Still not 15 though.
