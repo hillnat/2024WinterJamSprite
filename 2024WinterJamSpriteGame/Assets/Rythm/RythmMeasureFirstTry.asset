@@ -15,7 +15,7 @@ MonoBehaviour:
   tolerance: 0.2
   _noteSet:
   - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
-    delay: 1
+    delay: 0
   - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
     delay: 1
   - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
@@ -23,8 +23,8 @@ MonoBehaviour:
   - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
     delay: 1
   noteTimes:
-  - 5
-  - 10
-  - 15
-  - 20
-  measureEndTime: 21
+  - 0
+  - 1
+  - 2
+  - 3
+  measureEndTime: 4
