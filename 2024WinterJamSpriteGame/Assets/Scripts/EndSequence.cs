@@ -38,8 +38,11 @@ public class EndSequence : MonoBehaviour
     }
 
     public void EndGame(){
+        //Reset
         GameManager.tabs = 0;
         GameManager.dialogueTreeIndex = 0;
+        if(RythmManager.instance){ RythmManager.instance.score = 0; }
+        //Escape
         SceneManager.LoadScene("MainMenu");
     }
 
