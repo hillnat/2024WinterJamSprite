@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb6a7018689490498fe7ac2f78141db, type: 3}
   m_Name: RythmMeasureMed 2
   m_EditorClassIdentifier: 
-  tolerance: 0.25
+  tolerance: 0.2
   endOffset: 1
   _noteSet:
   - note: {fileID: 11400000, guid: 1935ea67874b01d488a04fa223d0241c, type: 2}
