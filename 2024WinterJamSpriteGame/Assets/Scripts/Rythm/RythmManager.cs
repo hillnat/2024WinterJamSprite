@@ -179,7 +179,7 @@ public class RythmManager : MonoBehaviour
 	#region UI Callbacks
 	public void UICALLBACK_StartPlayingMeasure()
 	{
-		if (isListeningToPlayer) { Debug.Log("Tried to start playing the measure while listening to the users input"); return; }
+		if (isListeningToPlayer || isPlayingMeasure) { Debug.Log("Tried to start playing the measure while listening to the users input"); return; }
 		isPlayingMeasure = true;
 		isListeningToPlayer = false;
 		timer = 0f;
