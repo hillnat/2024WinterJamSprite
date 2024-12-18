@@ -737,6 +737,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackgroundScene
       objectReference: {fileID: 0}
+    - target: {fileID: 1291551484760435049, guid: 52c87d68bb0665640a2bdf2771530c76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2229313190272233368, guid: 52c87d68bb0665640a2bdf2771530c76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128942534716184575, guid: 52c87d68bb0665640a2bdf2771530c76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5251657810602539078, guid: 52c87d68bb0665640a2bdf2771530c76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473173130485452420, guid: 52c87d68bb0665640a2bdf2771530c76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542621437930668966, guid: 52c87d68bb0665640a2bdf2771530c76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642668006448635499, guid: 52c87d68bb0665640a2bdf2771530c76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884052348374761468, guid: 52c87d68bb0665640a2bdf2771530c76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8743460308166565640, guid: 52c87d68bb0665640a2bdf2771530c76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
