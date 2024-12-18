@@ -651,6 +651,14 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4111396876626430019, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
+      propertyPath: allMeasures.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2c1283b17a4bb2041a1dab057b68fe0d, type: 2}
+    - target: {fileID: 4111396876626430019, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
+      propertyPath: allMeasures.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1cfd39579cde8d14d80d916e6bbe4262, type: 2}
     - target: {fileID: 6933911570778295323, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
       propertyPath: m_Name
       value: RythmManager
