@@ -1283,7 +1283,8 @@ MonoBehaviour:
   _currentMeasure: 0
   miniScoreAnimator: {fileID: 2684390127304925077}
   hitFeedback: {fileID: 6045915020963669826}
-  noteIconText: {fileID: 7406282429926785195}
+  noteIconTextWhite: {fileID: 7406282429926785195}
+  noteIconTextGreen: {fileID: 0}
   scoreIcon1: {fileID: 8957025758744648267}
   scoreIcon2: {fileID: 6992467113826248947}
   scoreIcon3: {fileID: 5658947170811027514}

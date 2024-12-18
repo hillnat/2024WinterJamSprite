@@ -67,7 +67,8 @@ public class RythmManager : MonoBehaviour
 	public int _currentMeasure;
 	public Animator miniScoreAnimator;
 	public UiAnimation hitFeedback;
-	public TMP_Text noteIconText;
+	public TMP_Text noteIconTextWhite;
+	public TMP_Text noteIconTextGreen;
 
 	private int lastNoteIndex=int.MinValue;//The index of the previous note we played, in the measures list of notes
 	private int lastMiniScoreAtIndex = int.MinValue;
@@ -83,7 +84,8 @@ public class RythmManager : MonoBehaviour
 	{
 		Singleton();
 		currentMeasure = 0;
-        noteIconText.text = "";
+        noteIconTextWhite.text = "";
+        noteIconTextGreen.text = "";
         score = 0;
 		miniScore = 0;
     }
@@ -100,7 +102,7 @@ public class RythmManager : MonoBehaviour
 			timer += Time.deltaTime * multiplier;//Increment timer
 			EvaluationResults eR = allMeasures[currentMeasure].EvaluateNoteTimes(timer);//Evaluate measure
 
-			CheckForNoteChange(eR);
+			CheckForNoteChange(eR,true);
             test.enabled = eR.isPlayingWithTolerance;
 
             //SetToneAudioSource(eR);//Set audio source on or off
@@ -114,7 +116,7 @@ public class RythmManager : MonoBehaviour
             EvaluationResults eR = allMeasures[currentMeasure].EvaluateNoteTimes(timer);//Evaluate measure
 
 
-            CheckForNoteChange(eR);
+            CheckForNoteChange(eR,false);
 
             //SetToneAudioSource(eR);//Set audio source on or off
             test.enabled = eR.isPlayingWithTolerance;
@@ -133,11 +135,13 @@ public class RythmManager : MonoBehaviour
 				}
             }
 
-            if (timer > allMeasures[currentMeasure].measureEndTime) {
+            if (timer > allMeasures[currentMeasure].measureEndTime+1.5f) {
 				timer = 0;
 				isListeningToPlayer = false;
 				isPlayingMeasure = false;
-				noteIconText.text = "";
+				noteIconTextWhite.text = "";
+				noteIconTextGreen.text = "";
+
 				if (miniScore >= allMeasures[currentMeasure].noteSet.Count) { score++; currentMeasure++; }
 			}//Handle end of running timer.
         }
@@ -149,7 +153,8 @@ public class RythmManager : MonoBehaviour
 		if (isListeningToPlayer) { Debug.Log("Tried to start playing the measure while listening to the users input"); return; }
 		isPlayingMeasure = true;
 		timer = 0f;
-        noteIconText.text = "";
+        noteIconTextWhite.text = "";
+        noteIconTextGreen.text = "";
     }
     #endregion
 
@@ -165,14 +170,21 @@ public class RythmManager : MonoBehaviour
         float miniScoreScaled = (float)miniScore / (float)allMeasures[currentMeasure].noteSet.Count;
 		miniScoreIcon.fillAmount = miniScoreScaled;
     }
-	private void CheckForNoteChange(EvaluationResults eR)
+	private void CheckForNoteChange(EvaluationResults eR, bool useNoteText1)
 	{
         if (eR.isPlayingWithoutTolerance && (lastNoteIndex == int.MinValue || lastNoteIndex != eR.index))
         {
             Debug.Log("Note has changed");
             //recentNote = eR.note;
             lastNoteIndex = eR.index;
-            noteIconText.text += allMeasures[currentMeasure].noteSet[lastNoteIndex].note.icon;
+			if (useNoteText1)
+            {
+                noteIconTextWhite.text += allMeasures[currentMeasure].noteSet[lastNoteIndex].note.icon;
+            }
+			else
+			{
+                noteIconTextGreen.text += allMeasures[currentMeasure].noteSet[lastNoteIndex].note.icon;
+            }
 
             AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
         }
