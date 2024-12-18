@@ -70,7 +70,7 @@ public class RythmManager : MonoBehaviour
 
 	//private RythmNote recentNote;
 	private int priorNoteIndex=int.MinValue;
-
+	private int lastMiniScoreAtIndex = int.MinValue;
 	public Image scoreIcon1;
 	public Image scoreIcon2;
 	public Image scoreIcon3;
@@ -133,10 +133,12 @@ public class RythmManager : MonoBehaviour
 			//SetToneAudioSource(eR);//Set audio source on or off
 			test.enabled = eR.isPlaying;
 
-            if (InputManager.instance.hit && eR.isPlaying) {
+            if (InputManager.instance.hit && eR.isPlaying && (lastMiniScoreAtIndex==int.MinValue || lastMiniScoreAtIndex != priorNoteIndex)) {
 				hitFeedback.RunAnim();
 				miniScore++;
-			}
+				lastMiniScoreAtIndex = priorNoteIndex;
+
+            }
 
             if (timer > allMeasures[currentMeasure].measureEndTime) {
 				timer = 0;

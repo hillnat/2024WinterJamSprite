@@ -723,6 +723,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4111396876626430019, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
+      propertyPath: test
+      value: 
+      objectReference: {fileID: 235692686}
     - target: {fileID: 6933911570778295323, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
       propertyPath: m_Name
       value: RythmManager
