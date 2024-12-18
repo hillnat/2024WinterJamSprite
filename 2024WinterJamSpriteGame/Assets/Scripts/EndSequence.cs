@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.WSA;
 
 public class EndSequence : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class EndSequence : MonoBehaviour
 
     [Header("Splash")]
     [SerializeField] GameObject Guy;
+    [SerializeField] Image Boat;
     [SerializeField] Image Darkness;
     [SerializeField] GameObject cutsceneCanvas;
     [SerializeField] AudioSource splasher;
@@ -33,6 +35,7 @@ public class EndSequence : MonoBehaviour
         kayak.transform.position = firstKayakPos;
         kayak.transform.eulerAngles = firstKayakRotation;
         Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 0f);
+        Boat.gameObject.SetActive(false);
 
         StartCoroutine(Splash());
     }
@@ -49,10 +52,7 @@ public class EndSequence : MonoBehaviour
     public void Freedom()
     {
         OnFree.Invoke();
-    
         theCamera.transform.position = secondCameraPos;
-        kayak.transform.position = secondKayakPos;
-        kayak.transform.eulerAngles = secondKayakRotation;
     }
 
     private IEnumerator Splash(){
@@ -96,6 +96,12 @@ public class EndSequence : MonoBehaviour
         //Guy gone
         Guy.SetActive(false);
 
+        //Kayak
+        kayak.transform.position = secondKayakPos;
+        kayak.transform.eulerAngles = secondKayakRotation;
+        Boat.gameObject.SetActive(true);
+    
+
         yield return new WaitForSeconds(1);
     
         // Fade Out
@@ -107,7 +113,45 @@ public class EndSequence : MonoBehaviour
             yield return null;
         }
 
-        cutsceneCanvas.SetActive(false);
+        yield return new WaitForSeconds(1);
+
+        //2D boat
+        int tilt = 0;
+        bool rightTilt = true;
+
+        while(Boat.rectTransform.anchoredPosition.x < 1150){
+            Boat.rectTransform.anchoredPosition += new Vector2(10,0);
+            if(rightTilt){
+                tilt -= 2;
+                if(tilt <= -10){ rightTilt = false; }
+            }
+            else{
+                tilt += 2;
+                if(tilt >= 10){ rightTilt = true; }
+            }
+            Boat.rectTransform.rotation = Quaternion.Euler(0, 0, tilt);
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        //Fade In
+        elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.Lerp(0, 1f, elapsedTime / fadeDuration));
+            yield return null;
+        }
+        //Move Camera
         Freedom();
+        // Fade Out
+        elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.Lerp(1f, 0, elapsedTime / fadeDuration));
+            yield return null;
+        }
+
+        cutsceneCanvas.SetActive(false);
     }
 }
