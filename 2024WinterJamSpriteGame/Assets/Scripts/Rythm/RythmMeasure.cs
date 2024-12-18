@@ -8,6 +8,7 @@ using UnityEngine;
 public class RythmMeasure : ScriptableObject
 {
 	public float tolerance=0.25f;//Margin for error when checking if a sound is playing at a certain time
+	public float endOffset = 0f;
 	public List<Note> noteSet
 	{
 		get { return _noteSet; }
@@ -26,7 +27,7 @@ public class RythmMeasure : ScriptableObject
             timeOffset += noteSet[i].delay;
             noteTimes.Add(timeOffset);
         }
-		measureEndTime = timeOffset+1f;
+		measureEndTime = timeOffset+ endOffset;
     }
 	public EvaluationResults EvaluateNoteTimes(float timer) //Returns whether or not a given time has a note playing
 	{

@@ -68,12 +68,16 @@ public class EndSequence : MonoBehaviour
             Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.Lerp(0, 1f, elapsedTime / fadeDuration));
             yield return null;
         }
-    
+
+        yield return new WaitForSeconds(1);
+
         //Splash
         splasher.Play();
     
         //Guy gone
         Guy.SetActive(false);
+
+        yield return new WaitForSeconds(1);
     
         // Fade Out
         elapsedTime = 0f;
