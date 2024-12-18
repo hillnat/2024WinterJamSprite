@@ -12,21 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb6a7018689490498fe7ac2f78141db, type: 3}
   m_Name: RythmMeasureTest
   m_EditorClassIdentifier: 
+  tolerance: 0.25
   _noteSet:
-  - {fileID: 11400000, guid: 5f411fcf6f0a4ed459691d6520f4d6e9, type: 2}
-  - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
-  - {fileID: 11400000, guid: ff78d6d6038f6904598b6a4d68032c94, type: 2}
-  - {fileID: 11400000, guid: bdf59c23000de084ca5f51cef5fe6014, type: 2}
-  - {fileID: 11400000, guid: bdf59c23000de084ca5f51cef5fe6014, type: 2}
-  - {fileID: 11400000, guid: ff78d6d6038f6904598b6a4d68032c94, type: 2}
-  - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
-  - {fileID: 11400000, guid: 5f411fcf6f0a4ed459691d6520f4d6e9, type: 2}
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
   noteTimes:
-  - {x: 0.05, y: 0.125}
-  - {x: 0.275, y: 0.425}
-  - {x: 0.6250001, y: 0.9250001}
-  - {x: 1.0500001, y: 1.2500001}
-  - {x: 1.3000001, y: 1.5000001}
-  - {x: 1.6250001, y: 1.9250002}
-  - {x: 2.125, y: 2.275}
-  - {x: 2.425, y: 2.5}
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  measureEndTime: 4
