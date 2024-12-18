@@ -56,10 +56,29 @@ public class EndSequence : MonoBehaviour
     }
 
     private IEnumerator Splash(){
+
         yield return new WaitForSeconds(2);
         //Guy
         float fadeDuration = 2f; // Adjust as needed
         float elapsedTime = 0f;
+
+        Vector3 offset = new Vector3(0,0,0.1f);
+        float duration = 0.01f;
+
+        for(int j = 0; j <= 2; j++){
+            for(int i = 0; i <= 5; i++){
+                theCamera.transform.eulerAngles += offset;
+                yield return new WaitForSeconds(duration);
+            }
+            for(int i = 0; i <= 10; i++){
+                theCamera.transform.eulerAngles -= offset;
+                yield return new WaitForSeconds(duration);
+            }
+            for(int i = 0; i <= 5; i++){
+                theCamera.transform.eulerAngles += offset;
+                yield return new WaitForSeconds(duration);
+            }
+        }
     
         //Fade In
         while (elapsedTime < fadeDuration)
