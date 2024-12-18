@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8921790219555602286}
   - component: {fileID: 5177905592665551472}
   - component: {fileID: 1476635447158496499}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6957305175922473195}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DialogueMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4129091598124294190}
   - component: {fileID: 845755718692277099}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DialogueCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -226,9 +226,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6663307070853412414}
     m_Modifications:
+    - target: {fileID: 2994630613367031269, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4580780718232963272, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
       propertyPath: m_Name
       value: DialogueThing
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580780718232963272, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6212937003288799157, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
       propertyPath: m_fontAsset
@@ -237,6 +245,18 @@ PrefabInstance:
     - target: {fileID: 6212937003288799157, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6656958789050131252, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6718054236380399073, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977387343120100043, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7634852904115143085, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
       propertyPath: m_Pivot.x

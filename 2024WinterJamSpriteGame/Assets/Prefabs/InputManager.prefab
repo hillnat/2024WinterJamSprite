@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5999641450328249160}
   - component: {fileID: 2908019506327762041}
   - component: {fileID: 2380725063968494511}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: InputManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
