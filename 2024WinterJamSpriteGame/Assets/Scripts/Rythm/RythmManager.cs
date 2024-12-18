@@ -75,6 +75,8 @@ public class RythmManager : MonoBehaviour
 	public Image scoreIcon2;
 	public Image scoreIcon3;
 	public Image miniScoreIcon;
+
+	public Image test;
 	#region Unity Callbacks
 	private void Awake()
 	{
@@ -106,6 +108,8 @@ public class RythmManager : MonoBehaviour
 
                 AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
             }
+            test.enabled = eR.isPlaying;
+
             //SetToneAudioSource(eR);//Set audio source on or off
 
             if (timer > allMeasures[currentMeasure].measureEndTime) { timer = 0; isListeningToPlayer = true; isPlayingMeasure = false; noteIconText.text = ""; miniScore = 0; }//Handle end of running timer. After this elapses, the call part is over and we move onto the response
@@ -126,8 +130,8 @@ public class RythmManager : MonoBehaviour
 
                 AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
             }
-            //SetToneAudioSource(eR);//Set audio source on or off
-
+			//SetToneAudioSource(eR);//Set audio source on or off
+			test.enabled = eR.isPlaying;
 
             if (InputManager.instance.hit && eR.isPlaying) {
 				hitFeedback.RunAnim();
