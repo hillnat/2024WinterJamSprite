@@ -24,7 +24,23 @@ public class AudioManager : MonoBehaviour
 		Singleton();
 		InitPool();
 	}
-	public void PlaySound(AudioClip clip, float volume, float pitch, float stereoPan, float spatialBlend, float reverb)
+    public void UICALLBACK_PlaySoundui(AudioClip clip, float volume)
+    {
+        int emitterIndex = GetFreeEmitter();
+        if (emitterIndex == -1) { return; }
+        AudioSource target = emitters[emitterIndex];
+        if (target.isPlaying) { target.Stop(); }
+
+        target.volume = volume;
+        target.pitch = 1;
+        target.panStereo = 0;
+        target.spatialBlend = 0;
+        target.reverbZoneMix = 0;
+        target.clip = clip;
+        Debug.Log($"Playing sound {clip.name}");
+        target.Play();
+    }
+    public void PlaySound(AudioClip clip, float volume, float pitch, float stereoPan, float spatialBlend, float reverb)
 	{
 		int emitterIndex = GetFreeEmitter();
 		if (emitterIndex == -1) { return;}

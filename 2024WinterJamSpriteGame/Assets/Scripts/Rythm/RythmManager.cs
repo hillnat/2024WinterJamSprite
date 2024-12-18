@@ -136,7 +136,7 @@ public class RythmManager : MonoBehaviour
 				isListeningToPlayer = false;
 				isPlayingMeasure = false;
 				noteIconText.text = "";
-				if (miniScore >= allMeasures[currentMeasure].noteSet.Count) { score++; }
+				if (miniScore >= allMeasures[currentMeasure].noteSet.Count) { score++; currentMeasure++; }
 			}//Handle end of running timer.
         }
     }
