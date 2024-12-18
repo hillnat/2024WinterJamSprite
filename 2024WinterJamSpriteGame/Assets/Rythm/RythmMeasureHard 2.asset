@@ -31,7 +31,7 @@ MonoBehaviour:
     delay: 0.25
   - note: {fileID: 11400000, guid: 4f299a7c3ab114f458082c12e08b8fdb, type: 2}
     delay: 0.25
-  - note: {fileID: 11400000, guid: 2d8f4598eb1cb104fb6e43ee2b78c801, type: 2}
+  - note: {fileID: 11400000, guid: 1935ea67874b01d488a04fa223d0241c, type: 2}
     delay: 0.25
   - note: {fileID: 11400000, guid: 2d8f4598eb1cb104fb6e43ee2b78c801, type: 2}
     delay: 0.25
@@ -49,4 +49,4 @@ MonoBehaviour:
   - 3
   - 3.25
   - 3.5
-  measureEndTime: 4.5
+  measureEndTime: 4
