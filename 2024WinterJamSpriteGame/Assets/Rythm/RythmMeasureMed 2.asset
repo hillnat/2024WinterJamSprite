@@ -13,22 +13,23 @@ MonoBehaviour:
   m_Name: RythmMeasureMed 2
   m_EditorClassIdentifier: 
   tolerance: 0.25
+  endOffset: 0
   _noteSet:
-  - note: {fileID: 0}
+  - note: {fileID: 11400000, guid: 1935ea67874b01d488a04fa223d0241c, type: 2}
     delay: 0
-  - note: {fileID: 0}
+  - note: {fileID: 11400000, guid: 2d8f4598eb1cb104fb6e43ee2b78c801, type: 2}
     delay: 0
-  - note: {fileID: 0}
+  - note: {fileID: 11400000, guid: 388166f70492156469eb96a37be624fa, type: 2}
     delay: 0
-  - note: {fileID: 0}
+  - note: {fileID: 11400000, guid: 1935ea67874b01d488a04fa223d0241c, type: 2}
     delay: 0
-  - note: {fileID: 0}
+  - note: {fileID: 11400000, guid: 2d8f4598eb1cb104fb6e43ee2b78c801, type: 2}
     delay: 0
-  - note: {fileID: 0}
+  - note: {fileID: 11400000, guid: 388166f70492156469eb96a37be624fa, type: 2}
     delay: 0
-  - note: {fileID: 0}
+  - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
     delay: 0
-  - note: {fileID: 0}
+  - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
     delay: 0
   noteTimes: []
   measureEndTime: 4
