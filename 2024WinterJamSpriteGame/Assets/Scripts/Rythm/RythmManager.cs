@@ -71,7 +71,6 @@ public class RythmManager : MonoBehaviour
 	public Animator yourTurnAnimator;
 	public Animator measureBeatAnimator;
 	public Animator tryAgainAnimator;
-	public UiAnimation hitFeedback;
 	public TMP_Text noteIconTextWhite;
 	public TMP_Text noteIconTextGreen;
 
@@ -82,8 +81,11 @@ public class RythmManager : MonoBehaviour
 	public Image scoreIcon2;
 	public Image scoreIcon3;
 	public Image miniScoreIcon;
+	public Canvas rythmCanvas;
+	public Image hitIndicator;
+	public GameObject starParticles;
 
-	public Image test;
+
 	#region Unity Callbacks
 	private void Awake()
 	{
@@ -93,7 +95,7 @@ public class RythmManager : MonoBehaviour
 		noteIconTextGreen.text = "";
 		score = 0;
 		miniScore = 0;
-		test.enabled = false;
+		hitIndicator.enabled = false;
 		yourTurnAnimator.gameObject.SetActive(false);
 		measureBeatAnimator.gameObject.SetActive(false);
 		tryAgainAnimator.gameObject.SetActive(false);
@@ -112,7 +114,7 @@ public class RythmManager : MonoBehaviour
 			EvaluationResults eR = allMeasures[currentMeasure].EvaluateNoteTimes(timer);//Evaluate measure
 
 			CheckForNoteChange(eR, true);
-			test.enabled = false;
+			hitIndicator.enabled = false;
 			if (measureBeatAnimator.gameObject.activeInHierarchy) { measureBeatAnimator.gameObject.SetActive(false); }
 			if (tryAgainAnimator.gameObject.activeInHierarchy) { tryAgainAnimator.gameObject.SetActive(false); }
 
@@ -130,14 +132,16 @@ public class RythmManager : MonoBehaviour
 			CheckForNoteChange(eR, false);
 
 			//SetToneAudioSource(eR);//Set audio source on or off
-			test.enabled = eR.isPlayingWithTolerance;
+			hitIndicator.enabled = eR.isPlayingWithTolerance;
 
 			//Check if the player clicked at the right time
 			if (InputManager.instance.hit)
 			{
 				if (eR.isPlayingWithTolerance && (lastMiniScoreAtIndex == int.MinValue || lastMiniScoreAtIndex != lastNoteIndex))
 				{
-					hitFeedback.RunAnim();
+					GameObject go = Instantiate(starParticles, Vector3.zero, Quaternion.identity);
+					go.transform.SetParent(rythmCanvas.transform);
+					go.transform.localPosition = new Vector2(Random.Range(-150f,150f), Random.Range(-150f, 150f));
 					miniScore++;
 					lastMiniScoreAtIndex = lastNoteIndex;
 				}

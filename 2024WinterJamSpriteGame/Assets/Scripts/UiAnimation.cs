@@ -13,6 +13,7 @@ public class UiAnimation : MonoBehaviour
     private void Start()
     {
         image = GetComponent<Image>();
+        RunAnim();
     }
     private void Update()
     {
@@ -33,5 +34,6 @@ public class UiAnimation : MonoBehaviour
         }
         image.sprite = frames[0];
         image.enabled = false;
+        Destroy(this.gameObject);
     }
 }
