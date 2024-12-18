@@ -23,8 +23,6 @@ MonoBehaviour:
     delay: 1
   - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
     delay: 1
-  - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
-    delay: 1
   noteTimes:
   - 0
   - 1

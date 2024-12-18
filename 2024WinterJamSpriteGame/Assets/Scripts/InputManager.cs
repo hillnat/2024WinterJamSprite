@@ -37,7 +37,7 @@ public class InputManager : MonoBehaviour
     }
     public void OnCheats()
     {
-        RythmManager.instance.score++;
+        //RythmManager.instance.score++;
     }
     #endregion
 }
