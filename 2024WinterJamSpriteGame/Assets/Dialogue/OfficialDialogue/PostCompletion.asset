@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingSpeed: 0.05
   punctuationSpeed: 0.2
-  sound: {fileID: 0}
+  sound: {fileID: 8300000, guid: d2e754e6eb41164488bf9ac19f341af9, type: 3}
   text:
   - ...
