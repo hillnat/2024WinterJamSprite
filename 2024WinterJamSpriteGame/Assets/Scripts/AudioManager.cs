@@ -24,14 +24,14 @@ public class AudioManager : MonoBehaviour
 		Singleton();
 		InitPool();
 	}
-    public void UICALLBACK_PlaySoundui(AudioClip clip, float volume)
+    public void UICALLBACK_PlaySoundui(AudioClip clip)
     {
         int emitterIndex = GetFreeEmitter();
         if (emitterIndex == -1) { return; }
         AudioSource target = emitters[emitterIndex];
         if (target.isPlaying) { target.Stop(); }
 
-        target.volume = volume;
+        target.volume = 1;
         target.pitch = 1;
         target.panStereo = 0;
         target.spatialBlend = 0;
