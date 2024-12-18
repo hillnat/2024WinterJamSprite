@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class RythmNote : ScriptableObject
 {
-    [Header("Note Sound")]
-    public float preDelay;
-    public float duration;
-    public float postDelay;
     [Header("Note Char")]
     public char icon;
     [Header("Audio Emitter Settings")]
@@ -18,6 +14,4 @@ public class RythmNote : ScriptableObject
     public float stereoPan = 0f;
     public float spatialBlend = 0f;
     public float reverb = 1f;
-    [Header("Shadow realm")]
-    public int uniqueID;
 }

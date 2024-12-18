@@ -7,7 +7,21 @@ using UnityEngine.UI;
 
 public class RythmManager : MonoBehaviour
 {
-	public int score
+    #region Singleton
+    public static RythmManager instance;
+    private void Singleton()
+    {
+
+        if (instance != null)
+        {
+            Destroy(instance);
+        }
+
+        instance = this;
+    }
+    #endregion
+	//Score is the total number of tabs you have collected, up to 15
+    public int score
 	{
 		get { return _score; }
 		set {
@@ -31,50 +45,37 @@ public class RythmManager : MonoBehaviour
 		}
 	}
 	public int _score=0;
-
+	//Mini score is your progress through the current measure
     public int miniScore
     {
         get { return _miniScore; }
         set { _miniScore = value; UpdateMiniScore(); }
     }
     public int _miniScore = 0;
-    #region Singleton
-    public static RythmManager instance;
-    private void Singleton()
-    {
-
-        if (instance != null)
-        {
-            Destroy(instance);
-        }
-
-        instance = this;
-    }
-    #endregion
-    public float timer = 0f;
-	public float multiplier = 2.66666666667f; //90 bpm = 2.6666
-	//If mult = 1, it is 240 bpm. There are 4 beats per second
-	public bool isPlayingMeasure = false;
-	public bool isListeningToPlayer = false;
+    
+    public float timer = 0f;//Measure timer
+	public float multiplier = 2.66666666667f;
+	public bool isPlayingMeasure = false;//Are we playing the measure to the player?
+	public bool isListeningToPlayer = false;//Are we waiting for the player to match the rhythm?
 
 	public List<RythmMeasure> allMeasures;
 	public int currentMeasure
 	{
 		get { return _currentMeasure; }
-		set { _currentMeasure = value; allMeasures[_currentMeasure].CalibrateMeasure();}
+		set { _currentMeasure = value; allMeasures[_currentMeasure].GenerateNoteTimes();}
 	}
 	public int _currentMeasure;
-
+	public Animator miniScoreAnimator;
 	public UiAnimation hitFeedback;
 	public TMP_Text noteIconText;
 
-	//private RythmNote recentNote;
-	private int priorNoteIndex=int.MinValue;
+	private int lastNoteIndex=int.MinValue;//The index of the previous note we played, in the measures list of notes
 	private int lastMiniScoreAtIndex = int.MinValue;
+
 	public Image scoreIcon1;
 	public Image scoreIcon2;
-	public Image scoreIcon3;
-	public Image miniScoreIcon;
+    public Image scoreIcon3;
+    public Image miniScoreIcon;
 
 	public Image test;
 	#region Unity Callbacks
@@ -97,18 +98,10 @@ public class RythmManager : MonoBehaviour
 			if (miniScore != 0) { miniScore = 0; }//Reset score but not every frame because the UI update call is tied into the set call
 
 			timer += Time.deltaTime * multiplier;//Increment timer
-			EvaluationResults eR = allMeasures[currentMeasure].Evaluate(timer);//Evaluate measure
+			EvaluationResults eR = allMeasures[currentMeasure].EvaluateNoteTimes(timer);//Evaluate measure
 
-            if (eR.note != null && (priorNoteIndex == int.MinValue || priorNoteIndex != eR.index))
-            {
-				Debug.Log("Note has changed");
-				//recentNote = eR.note;
-				priorNoteIndex = eR.index;
-                noteIconText.text += allMeasures[currentMeasure].noteSet[priorNoteIndex].icon;
-
-                AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
-            }
-            test.enabled = eR.isPlaying;
+			CheckForNoteChange(eR);
+            test.enabled = eR.isPlayingWithTolerance;
 
             //SetToneAudioSource(eR);//Set audio source on or off
 
@@ -118,26 +111,26 @@ public class RythmManager : MonoBehaviour
         else if (isListeningToPlayer)
 		{
             timer += Time.deltaTime * multiplier;//Increment timer
-            EvaluationResults eR = allMeasures[currentMeasure].Evaluate(timer);//Evaluate measure
+            EvaluationResults eR = allMeasures[currentMeasure].EvaluateNoteTimes(timer);//Evaluate measure
 
 
-            if (eR.note != null && (priorNoteIndex == int.MinValue || priorNoteIndex != eR.index))
-            {
-                Debug.Log("Note has changed");
-                //recentNote = eR.note;
-                priorNoteIndex = eR.index;
-                noteIconText.text += allMeasures[currentMeasure].noteSet[priorNoteIndex].icon;
+            CheckForNoteChange(eR);
 
-                AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
-            }
-			//SetToneAudioSource(eR);//Set audio source on or off
-			test.enabled = eR.isPlaying;
+            //SetToneAudioSource(eR);//Set audio source on or off
+            test.enabled = eR.isPlayingWithTolerance;
 
-            if (InputManager.instance.hit && eR.isPlaying && (lastMiniScoreAtIndex==int.MinValue || lastMiniScoreAtIndex != priorNoteIndex)) {
-				hitFeedback.RunAnim();
-				miniScore++;
-				lastMiniScoreAtIndex = priorNoteIndex;
-
+			//Check if the player clicked at the right time
+            if (InputManager.instance.hit) {
+				if (eR.isPlayingWithTolerance && (lastMiniScoreAtIndex == int.MinValue || lastMiniScoreAtIndex != lastNoteIndex))
+				{
+					hitFeedback.RunAnim();
+					miniScore++;
+					lastMiniScoreAtIndex = lastNoteIndex;
+				}
+				else
+				{
+					miniScoreAnimator.SetTrigger("Shake");
+				}
             }
 
             if (timer > allMeasures[currentMeasure].measureEndTime) {
@@ -170,5 +163,17 @@ public class RythmManager : MonoBehaviour
     {
         float miniScoreScaled = (float)miniScore / (float)allMeasures[currentMeasure].noteSet.Count;
 		miniScoreIcon.fillAmount = miniScoreScaled;
+    }
+	private void CheckForNoteChange(EvaluationResults eR)
+	{
+        if (eR.isPlayingWithoutTolerance && (lastNoteIndex == int.MinValue || lastNoteIndex != eR.index))
+        {
+            Debug.Log("Note has changed");
+            //recentNote = eR.note;
+            lastNoteIndex = eR.index;
+            noteIconText.text += allMeasures[currentMeasure].noteSet[lastNoteIndex].note.icon;
+
+            AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
+        }
     }
 }

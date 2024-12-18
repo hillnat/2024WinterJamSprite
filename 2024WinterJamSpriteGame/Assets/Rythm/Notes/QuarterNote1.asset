@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0d32148740e9f43b0a002e2adf8111, type: 3}
   m_Name: QuarterNote1
   m_EditorClassIdentifier: 
-  preDelay: 0
-  duration: 0.24
-  postDelay: 0.01
   icon: 57
   audioClip: {fileID: 8300000, guid: a40c2e82f9810f94c994d7621cdd6ccf, type: 3}
   volume: 1
@@ -22,4 +19,3 @@ MonoBehaviour:
   stereoPan: 0
   spatialBlend: 0
   reverb: 1
-  uniqueID: 1861802593

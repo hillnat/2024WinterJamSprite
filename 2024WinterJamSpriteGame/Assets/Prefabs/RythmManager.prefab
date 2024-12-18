@@ -605,8 +605,8 @@ RectTransform:
   m_GameObject: {fileID: 1602938266159184476}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3.25, y: 3.25, z: 3.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8329794193136010311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1023,6 +1023,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 593727441972045575}
+  - component: {fileID: 2684390127304925077}
   m_Layer: 5
   m_Name: MiniscoreRoot
   m_TagString: Untagged
@@ -1050,6 +1051,27 @@ RectTransform:
   m_AnchoredPosition: {x: -1108.1799, y: -372}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &2684390127304925077
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982990110736498251}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0160cfb5c99e1254dabe9457a0539b77, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6125949763191690269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1273,7 @@ MonoBehaviour:
   _score: 0
   _miniScore: 0
   timer: 0
-  multiplier: 0.3
+  multiplier: 1
   isPlayingMeasure: 0
   isListeningToPlayer: 0
   allMeasures:
@@ -1259,6 +1281,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c3a17043ba1816344b858cbda7eb4d2e, type: 2}
   - {fileID: 11400000, guid: 1db3a30266287eb469433ebc25e346b0, type: 2}
   _currentMeasure: 0
+  miniScoreAnimator: {fileID: 2684390127304925077}
   hitFeedback: {fileID: 6045915020963669826}
   noteIconText: {fileID: 7406282429926785195}
   scoreIcon1: {fileID: 8957025758744648267}
