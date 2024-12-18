@@ -18,16 +18,16 @@ MonoBehaviour:
   - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
     delay: 0
   - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
-    delay: 0
+    delay: 1
   - note: {fileID: 11400000, guid: 751923071c3de6940bdae0a3fa7120fe, type: 2}
-    delay: 0
+    delay: 1
   - note: {fileID: 11400000, guid: 924781e95fec2c74da88b271718d0d73, type: 2}
-    delay: 0
+    delay: 0.25
   - note: {fileID: 11400000, guid: 101b6b8253c72ce43b1c4cc4453875b0, type: 2}
-    delay: 0
+    delay: 0.25
   - note: {fileID: 11400000, guid: 4f299a7c3ab114f458082c12e08b8fdb, type: 2}
-    delay: 0
+    delay: 0.25
   - note: {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
-    delay: 0
+    delay: 1
   noteTimes: []
   measureEndTime: 4
