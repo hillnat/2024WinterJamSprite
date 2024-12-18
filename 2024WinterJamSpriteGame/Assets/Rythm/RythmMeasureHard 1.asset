@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RythmMeasureHard 1
   m_EditorClassIdentifier: 
   tolerance: 0.25
-  endOffset: 0
+  endOffset: 1
   _noteSet:
   - note: {fileID: 11400000, guid: 333eb730ed47d8c428ae3bdfb2908c48, type: 2}
     delay: 0

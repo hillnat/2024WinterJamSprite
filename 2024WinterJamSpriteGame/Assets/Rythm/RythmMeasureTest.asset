@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RythmMeasureTest
   m_EditorClassIdentifier: 
   tolerance: 0.25
+  endOffset: 1
   _noteSet:
   - note: {fileID: 0}
     delay: 0

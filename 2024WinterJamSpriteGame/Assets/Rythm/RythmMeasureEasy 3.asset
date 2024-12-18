@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RythmMeasureEasy 3
   m_EditorClassIdentifier: 
   tolerance: 0.25
+  endOffset: 1
   _noteSet:
   - note: {fileID: 11400000, guid: ff78d6d6038f6904598b6a4d68032c94, type: 2}
     delay: 0
