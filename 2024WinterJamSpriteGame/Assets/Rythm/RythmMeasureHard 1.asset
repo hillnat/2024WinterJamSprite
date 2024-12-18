@@ -12,14 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb6a7018689490498fe7ac2f78141db, type: 3}
   m_Name: RythmMeasureHard 1
   m_EditorClassIdentifier: 
+  tolerance: 0.25
   _noteSet:
-  - {fileID: 11400000, guid: 333eb730ed47d8c428ae3bdfb2908c48, type: 2}
-  - {fileID: 11400000, guid: 39f108d029752404db266d877c050df7, type: 2}
-  - {fileID: 11400000, guid: e4b2f494278e0b54a843c9cedf07272f, type: 2}
-  - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
-  - {fileID: 11400000, guid: 751923071c3de6940bdae0a3fa7120fe, type: 2}
-  - {fileID: 11400000, guid: 924781e95fec2c74da88b271718d0d73, type: 2}
-  - {fileID: 11400000, guid: 101b6b8253c72ce43b1c4cc4453875b0, type: 2}
-  - {fileID: 11400000, guid: 4f299a7c3ab114f458082c12e08b8fdb, type: 2}
-  - {fileID: 11400000, guid: 99d1ad5a2cce6ed459729e89c524bd66, type: 2}
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
+  - note: {fileID: 0}
+    delay: 0
   noteTimes: []
+  measureEndTime: 4
