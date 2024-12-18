@@ -27,7 +27,7 @@ public class RythmManager : MonoBehaviour
 		set
 		{
 			_score = value;
-			currentMeasure = Mathf.Clamp(score, 0, allMeasures.Count);
+			currentMeasure = Mathf.Clamp(score, 0, allMeasures.Count-1);
 			UpdateScoreIcons();
 			GameManager.tabs = score;
 			switch (score)
