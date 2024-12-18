@@ -52,6 +52,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Cheats",
+                    "type": "Button",
+                    "id": "9fcb2bf2-97a1-4bcb-a8a0-49953ec4e46d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -74,6 +83,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9791282e-61d0-4bde-9b36-cbaac2d6ccb4",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cheats",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
