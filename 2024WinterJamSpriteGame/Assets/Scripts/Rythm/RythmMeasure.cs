@@ -22,6 +22,7 @@ public class RythmMeasure : ScriptableObject
 		for(int i=0; i<noteSet.Count; i++)
 		{
 			RythmNote note = noteSet[i];
+			note.uniqueID = Random.Range(int.MinValue, int.MaxValue);
 			float begin = timeOffset + note.preDelay;
 			float end = begin + note.duration;
 			timeOffset = end + note.postDelay;//Total note time offset = pre + dur + post
@@ -39,6 +40,7 @@ public class RythmMeasure : ScriptableObject
 			{
                 eR.isPlaying= true;
 				eR.note = noteSet[i];
+				eR.index = i;
 			}
 		}
 		return eR;
@@ -46,6 +48,7 @@ public class RythmMeasure : ScriptableObject
 }
 public struct EvaluationResults // Return type of evlatiion call. Tell us if we clicked while a note is palying, and if so which note
 {
+	public int index;
 	public bool isPlaying;
     public RythmNote note;
 }

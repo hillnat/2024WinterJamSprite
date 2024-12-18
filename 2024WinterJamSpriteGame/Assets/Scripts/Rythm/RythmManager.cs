@@ -65,10 +65,11 @@ public class RythmManager : MonoBehaviour
 	}
 	public int _currentMeasure;
 
-	public ParticleSystem hitFeedback;
+	public UiAnimation hitFeedback;
 	public TMP_Text noteIconText;
 
-	private RythmNote recentNote;
+	//private RythmNote recentNote;
+	private int priorNoteIndex=int.MinValue;
 
 	public Image scoreIcon1;
 	public Image scoreIcon2;
@@ -78,7 +79,7 @@ public class RythmManager : MonoBehaviour
 	private void Awake()
 	{
 		Singleton();
-        if (currentMeasure < allMeasures.Count) { allMeasures[_currentMeasure].CalibrateMeasure(); }
+		currentMeasure = 0;
         noteIconText.text = "";
         score = 0;
 		miniScore = 0;
@@ -96,11 +97,12 @@ public class RythmManager : MonoBehaviour
 			timer += Time.deltaTime * multiplier;//Increment timer
 			EvaluationResults eR = allMeasures[currentMeasure].Evaluate(timer);//Evaluate measure
 
-            if (eR.note != null && recentNote != eR.note)
+            if (eR.note != null && (priorNoteIndex == int.MinValue || priorNoteIndex != eR.index))
             {
 				Debug.Log("Note has changed");
-                recentNote = eR.note;
-                noteIconText.text += recentNote.icon;
+				//recentNote = eR.note;
+				priorNoteIndex = eR.index;
+                noteIconText.text += allMeasures[currentMeasure].noteSet[priorNoteIndex].icon;
 
                 AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
             }
@@ -115,11 +117,12 @@ public class RythmManager : MonoBehaviour
             EvaluationResults eR = allMeasures[currentMeasure].Evaluate(timer);//Evaluate measure
 
 
-            if (eR.note != null && recentNote != eR.note)
+            if (eR.note != null && (priorNoteIndex == int.MinValue || priorNoteIndex != eR.index))
             {
                 Debug.Log("Note has changed");
-                recentNote = eR.note;
-                noteIconText.text += recentNote.icon;
+                //recentNote = eR.note;
+                priorNoteIndex = eR.index;
+                noteIconText.text += allMeasures[currentMeasure].noteSet[priorNoteIndex].icon;
 
                 AudioManager.instance.PlaySound(eR.note.audioClip, eR.note.volume, eR.note.pitch, eR.note.stereoPan, eR.note.spatialBlend, eR.note.reverb);
             }
@@ -127,7 +130,7 @@ public class RythmManager : MonoBehaviour
 
 
             if (InputManager.instance.hit && eR.isPlaying) {
-				hitFeedback.Play();
+				hitFeedback.RunAnim();
 				miniScore++;
 			}
 

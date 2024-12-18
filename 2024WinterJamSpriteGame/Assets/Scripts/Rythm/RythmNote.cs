@@ -18,4 +18,6 @@ public class RythmNote : ScriptableObject
     public float stereoPan = 0f;
     public float spatialBlend = 0f;
     public float reverb = 1f;
+    [Header("Shadow realm")]
+    public int uniqueID;
 }

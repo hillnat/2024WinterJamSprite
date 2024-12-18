@@ -10,6 +10,14 @@ public class UiAnimation : MonoBehaviour
     public float frameDelay=0.1f;
     private Image image;
 
+    private void Start()
+    {
+        image = GetComponent<Image>();
+    }
+    private void Update()
+    {
+        //if (InputManager.instance.hit) { RunAnim(); }
+    }
     public void RunAnim()
     {
         StartCoroutine(anim());
