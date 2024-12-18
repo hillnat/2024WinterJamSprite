@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
@@ -55,6 +56,9 @@ public class DialogueManager : MonoBehaviour
             if(GameManager.dialogueTreeIndex == 1 && !readExtraLine){
                 readExtraLine = true;
                 LoadDialogueTree(GameManager.dialogueTreeIndex);
+            }
+            else if(GameManager.dialogueTreeIndex == 5){
+                SceneManager.LoadScene("EndScreen");
             }
             else{ ViewManager.instance.SwitchToMainGame(); }
             return;
