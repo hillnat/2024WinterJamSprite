@@ -104,7 +104,7 @@ public class RythmManager : MonoBehaviour
             EvaluationResults eR = allMeasures[currentMeasure].EvaluateNoteTimes(timer);//Evaluate measure
 
             CheckForNoteChange(eR, true);
-            test.enabled = eR.isPlayingWithTolerance;
+            //test.enabled = eR.isPlayingWithTolerance;
 
             //SetToneAudioSource(eR);//Set audio source on or off
 
