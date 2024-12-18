@@ -58,7 +58,6 @@ public class TextTyper : MonoBehaviour
         else {
             guyImg.sprite = spriteB;
         }
-        Vector3 pos = guyImg.transform.position;
         Vector3 shift = new Vector3(0,2,0);
         int goUp = 0;
         while (currentCharacterIndex < targetText.Length)
@@ -87,7 +86,7 @@ public class TextTyper : MonoBehaviour
         if(dialogue.sound != null){
                 audioSource.Stop();
         }
-        guyImg.transform.position = pos;
+        guyImg.rectTransform.SetLocalPositionAndRotation(new Vector3(-247,65,0), new Quaternion());
         spriteIndex++;
         isTyping = false;
     }
@@ -97,7 +96,7 @@ public class TextTyper : MonoBehaviour
         {
             StopCoroutine(typingCoroutine);
         }
-        guyImg.transform.position = new Vector3(-247,65,0);
+        guyImg.rectTransform.SetLocalPositionAndRotation(new Vector3(-247,65,0), new Quaternion());
         textDisplay.text = targetText;
         isTyping = false;
     }
