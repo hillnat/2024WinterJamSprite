@@ -161,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 6279278416028185840}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -969.253, y: -527.632, z: 136.84529}
+  m_LocalPosition: {x: -969.253, y: -527.986, z: 136.428}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -229,6 +229,14 @@ PrefabInstance:
     - target: {fileID: 4580780718232963272, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
       propertyPath: m_Name
       value: DialogueThing
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212937003288799157, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c749eb0a0c92b042916447e20dc1957, type: 2}
+    - target: {fileID: 6212937003288799157, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7634852904115143085, guid: 5d5878119d38e70418098ecbf7494995, type: 3}
       propertyPath: m_Pivot.x
