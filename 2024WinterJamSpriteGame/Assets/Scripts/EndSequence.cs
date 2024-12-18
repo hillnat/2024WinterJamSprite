@@ -37,7 +37,11 @@ public class EndSequence : MonoBehaviour
         StartCoroutine(Splash());
     }
 
-    public void EndGame() => SceneManager.LoadScene("MainMenu");
+    public void EndGame(){
+        GameManager.tabs = 0;
+        GameManager.dialogueTreeIndex = 0;
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void Freedom()
     {
