@@ -615,6 +615,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2040912081629502256, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.5606861
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040912081629502256, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.6132076
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040912081629502256, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.2805714
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040912081629502256, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4287601736
+      objectReference: {fileID: 0}
     - target: {fileID: 6933911570778295323, guid: 3817af29f0de3c54a9f83f4ce92cb157, type: 3}
       propertyPath: m_Name
       value: RythmManager
