@@ -1,6 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EndSequence : MonoBehaviour
 {
@@ -15,6 +17,13 @@ public class EndSequence : MonoBehaviour
     [SerializeField] Vector3 secondKayakPos;
     [SerializeField] Vector3 secondKayakRotation;
 
+    [Header("Splash")]
+    [SerializeField] GameObject Guy;
+    [SerializeField] Image Darkness;
+    [SerializeField] GameObject cutsceneCanvas;
+    [SerializeField] AudioSource splasher;
+
+
     public UnityEvent OnFree;
 
     // Start is called before the first frame update
@@ -23,6 +32,9 @@ public class EndSequence : MonoBehaviour
         theCamera.transform.position = firstCameraPos;
         kayak.transform.position = firstKayakPos;
         kayak.transform.eulerAngles = firstKayakRotation;
+        Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, 0f);
+
+        StartCoroutine(Splash());
     }
 
     public void EndGame() => SceneManager.LoadScene("MainMenu");
@@ -34,5 +46,38 @@ public class EndSequence : MonoBehaviour
         theCamera.transform.position = secondCameraPos;
         kayak.transform.position = secondKayakPos;
         kayak.transform.eulerAngles = secondKayakRotation;
+    }
+
+    private IEnumerator Splash(){
+        yield return new WaitForSeconds(2);
+        //Guy
+        float fadeDuration = 2f; // Adjust as needed
+        float elapsedTime = 0f;
+    
+        //Fade In
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.Lerp(0, 1f, elapsedTime / fadeDuration));
+            yield return null;
+        }
+    
+        //Splash
+        splasher.Play();
+    
+        //Guy gone
+        Guy.SetActive(false);
+    
+        // Fade Out
+        elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            Darkness.color = new Color(Darkness.color.r, Darkness.color.g, Darkness.color.b, Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration));
+            yield return null;
+        }
+
+        cutsceneCanvas.SetActive(false);
+        Freedom();
     }
 }

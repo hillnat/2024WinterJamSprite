@@ -97,6 +97,7 @@ public class TextTyper : MonoBehaviour
         {
             StopCoroutine(typingCoroutine);
         }
+        guyImg.transform.position = new Vector3(-247,65,0);
         textDisplay.text = targetText;
         isTyping = false;
     }
