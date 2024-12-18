@@ -105,7 +105,7 @@ public class RythmManager : MonoBehaviour
 
             //SetToneAudioSource(eR);//Set audio source on or off
 
-            if (timer > allMeasures[currentMeasure].measureEndTime) { timer = 0; isListeningToPlayer = true; isPlayingMeasure = false; noteIconText.text = ""; miniScore = 0; }//Handle end of running timer. After this elapses, the call part is over and we move onto the response
+            if (timer > allMeasures[currentMeasure].measureEndTime) { timer = 0; isListeningToPlayer = true; isPlayingMeasure = false;  miniScore = 0; }//Handle end of running timer. After this elapses, the call part is over and we move onto the response
 
         }
         else if (isListeningToPlayer)
@@ -146,10 +146,11 @@ public class RythmManager : MonoBehaviour
     #region UI Callbacks
     public void UICALLBACK_StartPlayingMeasure()
 	{
-		if (isListeningToPlayer) { Debug.Log("Tried to start palying the measure while listening to the users input"); return; }
+		if (isListeningToPlayer) { Debug.Log("Tried to start playing the measure while listening to the users input"); return; }
 		isPlayingMeasure = true;
 		timer = 0f;
-	}
+        noteIconText.text = "";
+    }
     #endregion
 
 	private void UpdateScoreIcons()

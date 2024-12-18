@@ -15,8 +15,8 @@ public class RythmMeasure : ScriptableObject
 		set { _noteSet = value; GenerateNoteTimes(); }
 	}
 	public List<Note> _noteSet = new List<Note>();
-	public List<float> noteTimes = new List<float>(); // Represents the time where a note is playing. Each vector2 represents the start and end of when a note is playing
-	public float measureEndTime;
+	[HideInInspector]public List<float> noteTimes = new List<float>(); // Represents the time where a note is playing. Each vector2 represents the start and end of when a note is playing
+    [HideInInspector] public float measureEndTime;
 	public void GenerateNoteTimes()//Create list of times where notes are playing
 	{
 		//Build note times list for evaluating in the future
