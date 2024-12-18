@@ -7,7 +7,7 @@ public class PauseMenuManager : MonoBehaviour
     public UnityEvent OnOpenMenu;
     public UnityEvent OnOpenSettings;
 
-    void void OnEnable()
+    void OnEnable()
     {
         OnOpenMenu.Invoke();
     }
