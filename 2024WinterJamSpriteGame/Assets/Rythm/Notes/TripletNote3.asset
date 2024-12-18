@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TripletNote3
   m_EditorClassIdentifier: 
   preDelay: 0
-  duration: 0.05
-  postDelay: 0.07333334
+  duration: 0.07333334
+  postDelay: 0.01
   icon: 54
   audioClip: {fileID: 8300000, guid: a40c2e82f9810f94c994d7621cdd6ccf, type: 3}
   volume: 1
@@ -22,3 +22,4 @@ MonoBehaviour:
   stereoPan: 0
   spatialBlend: 0
   reverb: 1
+  uniqueID: 0
