@@ -211,7 +211,6 @@ MonoBehaviour:
   textTyper: {fileID: 8108447221005730137}
   dialogueTrees:
   - {fileID: 11400000, guid: dd775c5f138243c4d800e884b73207ec, type: 2}
-  - {fileID: 11400000, guid: 79511d23f7a9bc941ba995ebbea32071, type: 2}
   - {fileID: 11400000, guid: ddbf14b07b9a90a4d80730b567beaff5, type: 2}
   - {fileID: 11400000, guid: a7e57a1cf297d1f4b823be2ba189a49e, type: 2}
   - {fileID: 11400000, guid: 2ae8e1033252fd741b4dc1eca0a39c67, type: 2}

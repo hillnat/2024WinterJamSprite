@@ -37,9 +37,5 @@ public static class GameManager
                 dialogueTreeIndex = 4;
             }
         }
-        if(dialogueTreeIndex == 4){
-            dialogueTreeIndex = 5;
-            //Initiate escape or something
-        }
     }
 }

@@ -33,7 +33,7 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Not Enough Dialogue Trees");
             return; 
         }
-        if(index == 5){
+        if(index == 4){
             OnEndGame.Invoke();
             return;
         }
@@ -45,19 +45,12 @@ public class DialogueManager : MonoBehaviour
         if(shouldReadFirstLine) { ReadNextLine(); }
     }
 
-    //Messy solution
-    bool readExtraLine = false;
-
     public void ReadNextLine(){
         if(textTyper == null || textTyper.dialogue == null) { return; }
         if(stepThroughIndex > textTyper.dialogue.text.Length){
             //Tell game manager to load next dialogue tree
             GameManager.IncrementDialogueTreeIndex();
-            if(GameManager.dialogueTreeIndex == 1 && !readExtraLine){
-                readExtraLine = true;
-                LoadDialogueTree(GameManager.dialogueTreeIndex);
-            }
-            else if(GameManager.dialogueTreeIndex == 5){
+            if(GameManager.dialogueTreeIndex == 4){
                 SceneManager.LoadScene("EndScreen");
             }
             else{ ViewManager.instance.SwitchToMainGame(); }

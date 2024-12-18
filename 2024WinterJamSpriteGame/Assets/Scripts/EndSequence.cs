@@ -37,7 +37,14 @@ public class EndSequence : MonoBehaviour
         StartCoroutine(Splash());
     }
 
-    public void EndGame() => SceneManager.LoadScene("MainMenu");
+    public void EndGame(){
+        //Reset
+        GameManager.tabs = 0;
+        GameManager.dialogueTreeIndex = 0;
+        if(RythmManager.instance){ RythmManager.instance.score = 0; }
+        //Escape
+        SceneManager.LoadScene("MainMenu");
+    }
 
     public void Freedom()
     {
